@@ -81,6 +81,7 @@
       this.groupBox2 = new System.Windows.Forms.GroupBox();
       this.btnRefreshAmbientes = new System.Windows.Forms.Button();
       this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+      this.btnAbrirRmNet = new System.Windows.Forms.Button();
       this.grpConfig.SuspendLayout();
       this.grpSmartClient.SuspendLayout();
       this.pnlButtons.SuspendLayout();
@@ -91,7 +92,7 @@
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(9, 44);
+      this.label1.Location = new System.Drawing.Point(9, 42);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(56, 13);
       this.label1.TabIndex = 2;
@@ -459,9 +460,9 @@
       this.pnlButtons.Controls.Add(this.btnHostApp);
       this.pnlButtons.Controls.Add(this.btnRmexe);
       this.pnlButtons.Controls.Add(this.btnServiceManager);
-      this.pnlButtons.Location = new System.Drawing.Point(0, 10);
+      this.pnlButtons.Location = new System.Drawing.Point(10, 11);
       this.pnlButtons.Name = "pnlButtons";
-      this.pnlButtons.Size = new System.Drawing.Size(682, 34);
+      this.pnlButtons.Size = new System.Drawing.Size(671, 34);
       this.pnlButtons.TabIndex = 32;
       // 
       // btnAliasManager
@@ -470,7 +471,7 @@
       this.btnAliasManager.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
       this.btnAliasManager.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
       this.btnAliasManager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnAliasManager.Location = new System.Drawing.Point(338, 3);
+      this.btnAliasManager.Location = new System.Drawing.Point(330, 3);
       this.btnAliasManager.Name = "btnAliasManager";
       this.btnAliasManager.Size = new System.Drawing.Size(103, 26);
       this.btnAliasManager.TabIndex = 3;
@@ -486,9 +487,9 @@
       this.btnEncerraAmbiente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnEncerraAmbiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnEncerraAmbiente.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-      this.btnEncerraAmbiente.Location = new System.Drawing.Point(556, 3);
+      this.btnEncerraAmbiente.Location = new System.Drawing.Point(548, 3);
       this.btnEncerraAmbiente.Name = "btnEncerraAmbiente";
-      this.btnEncerraAmbiente.Size = new System.Drawing.Size(122, 26);
+      this.btnEncerraAmbiente.Size = new System.Drawing.Size(120, 26);
       this.btnEncerraAmbiente.TabIndex = 5;
       this.btnEncerraAmbiente.Text = "Encerrar Ambiente";
       this.btnEncerraAmbiente.UseVisualStyleBackColor = false;
@@ -500,7 +501,7 @@
       this.btnApagarBroker.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
       this.btnApagarBroker.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
       this.btnApagarBroker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnApagarBroker.Location = new System.Drawing.Point(447, 3);
+      this.btnApagarBroker.Location = new System.Drawing.Point(439, 3);
       this.btnApagarBroker.Name = "btnApagarBroker";
       this.btnApagarBroker.Size = new System.Drawing.Size(103, 26);
       this.btnApagarBroker.TabIndex = 4;
@@ -513,7 +514,7 @@
       this.btnHostApp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
       this.btnHostApp.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
       this.btnHostApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnHostApp.Location = new System.Drawing.Point(120, 3);
+      this.btnHostApp.Location = new System.Drawing.Point(112, 3);
       this.btnHostApp.Name = "btnHostApp";
       this.btnHostApp.Size = new System.Drawing.Size(103, 26);
       this.btnHostApp.TabIndex = 1;
@@ -526,7 +527,7 @@
       this.btnRmexe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
       this.btnRmexe.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
       this.btnRmexe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnRmexe.Location = new System.Drawing.Point(11, 3);
+      this.btnRmexe.Location = new System.Drawing.Point(3, 3);
       this.btnRmexe.Name = "btnRmexe";
       this.btnRmexe.Size = new System.Drawing.Size(103, 26);
       this.btnRmexe.TabIndex = 0;
@@ -539,7 +540,7 @@
       this.btnServiceManager.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
       this.btnServiceManager.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
       this.btnServiceManager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnServiceManager.Location = new System.Drawing.Point(229, 3);
+      this.btnServiceManager.Location = new System.Drawing.Point(221, 3);
       this.btnServiceManager.Name = "btnServiceManager";
       this.btnServiceManager.Size = new System.Drawing.Size(103, 26);
       this.btnServiceManager.TabIndex = 2;
@@ -578,7 +579,7 @@
       this.lblMessage.AutoSize = true;
       this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.lblMessage.ForeColor = System.Drawing.SystemColors.Highlight;
-      this.lblMessage.Location = new System.Drawing.Point(187, 9);
+      this.lblMessage.Location = new System.Drawing.Point(179, 4);
       this.lblMessage.Name = "lblMessage";
       this.lblMessage.Size = new System.Drawing.Size(99, 20);
       this.lblMessage.TabIndex = 34;
@@ -594,6 +595,7 @@
       this.lstAmbientes.BorderStyle = System.Windows.Forms.BorderStyle.None;
       this.lstAmbientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.lstAmbientes.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+      this.lstAmbientes.HideSelection = false;
       this.lstAmbientes.Location = new System.Drawing.Point(3, 13);
       this.lstAmbientes.Name = "lstAmbientes";
       this.lstAmbientes.Size = new System.Drawing.Size(250, 446);
@@ -621,7 +623,7 @@
       this.btnRefreshAmbientes.FlatAppearance.BorderSize = 0;
       this.btnRefreshAmbientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnRefreshAmbientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.btnRefreshAmbientes.Location = new System.Drawing.Point(215, 37);
+      this.btnRefreshAmbientes.Location = new System.Drawing.Point(183, 35);
       this.btnRefreshAmbientes.Name = "btnRefreshAmbientes";
       this.btnRefreshAmbientes.Size = new System.Drawing.Size(56, 26);
       this.btnRefreshAmbientes.TabIndex = 37;
@@ -629,11 +631,26 @@
       this.btnRefreshAmbientes.UseVisualStyleBackColor = false;
       this.btnRefreshAmbientes.Click += new System.EventHandler(this.btnRefreshAmbientes_Click);
       // 
+      // btnAbrirRmNet
+      // 
+      this.btnAbrirRmNet.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+      this.btnAbrirRmNet.BackgroundImage = global::RMTools.Properties.Resources.Icone_Pasta;
+      this.btnAbrirRmNet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+      this.btnAbrirRmNet.FlatAppearance.BorderSize = 0;
+      this.btnAbrirRmNet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.btnAbrirRmNet.Location = new System.Drawing.Point(245, 35);
+      this.btnAbrirRmNet.Name = "btnAbrirRmNet";
+      this.btnAbrirRmNet.Size = new System.Drawing.Size(26, 26);
+      this.btnAbrirRmNet.TabIndex = 6;
+      this.btnAbrirRmNet.UseVisualStyleBackColor = false;
+      this.btnAbrirRmNet.Click += new System.EventHandler(this.btnAbrirRmNet_Click);
+      // 
       // FormPrincipal
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(977, 524);
+      this.Controls.Add(this.btnAbrirRmNet);
       this.Controls.Add(this.btnRefreshAmbientes);
       this.Controls.Add(this.groupBox2);
       this.Controls.Add(this.lblMessage);
@@ -711,6 +728,7 @@
     private System.Windows.Forms.Button btnRefreshAmbientes;
     private System.Windows.Forms.Label label5;
     private System.Windows.Forms.TextBox txbDefaultDb;
+    private System.Windows.Forms.Button btnAbrirRmNet;
   }
 }
 

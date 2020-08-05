@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.DirectoryServices.ActiveDirectory;
 using System.Drawing;
 using System.IO;
@@ -49,6 +50,7 @@ namespace RMTools
     {
       grpConfig.Enabled = false;
       pnlButtons.Enabled = true;
+      btnAbrirRmNet.Enabled = true;
       LoadAmbiente();
       ResetTagsConfig();
       lblMessage.Visible = false;
@@ -127,6 +129,7 @@ namespace RMTools
       lbVersao.Text = "";
       lbVersaoaLabel.Visible = false;
       pnlButtons.Enabled = false;
+      btnAbrirRmNet.Enabled = false;
       grpConfig.Enabled = false;
     }
     
@@ -469,6 +472,11 @@ namespace RMTools
     private void btnRefreshAmbientes_Click(object sender, EventArgs e)
     {
       UpdateLstAmbientes();
+    }
+
+    private void btnAbrirRmNet_Click(object sender, EventArgs e)
+    {
+      Process.Start("explorer.exe", Ambiente.Selected.pathRmnet);
     }
   }
 }

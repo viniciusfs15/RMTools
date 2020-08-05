@@ -283,6 +283,8 @@ namespace RMTools
       ConfigAction.UpdateAll(_libPath, Ambiente.Selected.pathRmnet);
       ConfigAction.UpdateAll(_localizationLaguage, Ambiente.Selected.pathRmnet);
       ConfigAction.UpdateAll(_port, Ambiente.Selected.pathRmnet);
+      ConfigAction.Update(_defaultDb, pathHostServiceConfig);
+      ConfigAction.Update(_defaultDb, pathHostAppConfig);
 
       if (_updateServerEnabled.Value.ToLower() == "true")
       {
