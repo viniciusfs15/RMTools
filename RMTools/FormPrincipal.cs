@@ -114,6 +114,7 @@ namespace RMTools
     {
       if (!ToolProcess.CheckDomain())
       {
+        ToolProcess.Print(Properties.Resources.ForaDoDominio, "e");
         Application.Exit();
       }
       

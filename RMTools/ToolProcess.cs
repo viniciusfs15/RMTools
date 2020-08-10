@@ -225,11 +225,18 @@ namespace RMTools
 
     internal static bool CheckDomain()
     {
-      if (Domain.GetComputerDomain().ToString().ToUpper() != "BH01.LOCAL")
+      try
+      {
+        if (Domain.GetComputerDomain().ToString().ToUpper() != "BH01.LOCAL")
+        {
+          return false;
+        }
+        return true;
+      }
+      catch (Exception)
       {
         return false;
       }
-      return true;
     }
 
     public static void StopHostService()

@@ -196,6 +196,15 @@ namespace RMTools.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to É necessário estar no domínio TOTVS para que esta aplicação seja executada..
+        /// </summary>
+        internal static string ForaDoDominio {
+            get {
+                return ResourceManager.GetString("ForaDoDominio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Host_Off {

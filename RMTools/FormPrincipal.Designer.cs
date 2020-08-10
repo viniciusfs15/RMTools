@@ -32,6 +32,15 @@
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
       this.label1 = new System.Windows.Forms.Label();
       this.timer1 = new System.Windows.Forms.Timer(this.components);
+      this.lbVersaoaLabel = new System.Windows.Forms.Label();
+      this.lbVersao = new System.Windows.Forms.Label();
+      this.bgWorkerAplicar = new System.ComponentModel.BackgroundWorker();
+      this.lblMessage = new System.Windows.Forms.Label();
+      this.lstAmbientes = new System.Windows.Forms.ListView();
+      this.groupBox2 = new System.Windows.Forms.GroupBox();
+      this.btnRefreshAmbientes = new System.Windows.Forms.Button();
+      this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+      this.btnAbrirRmNet = new System.Windows.Forms.Button();
       this.grpConfig = new System.Windows.Forms.GroupBox();
       this.label5 = new System.Windows.Forms.Label();
       this.txbDefaultDb = new System.Windows.Forms.TextBox();
@@ -65,7 +74,7 @@
       this.txbHttpPort = new System.Windows.Forms.TextBox();
       this.txbApiPort = new System.Windows.Forms.TextBox();
       this.label9 = new System.Windows.Forms.Label();
-      this.lbVersaoaLabel = new System.Windows.Forms.Label();
+      this.groupBox1 = new System.Windows.Forms.GroupBox();
       this.pnlButtons = new System.Windows.Forms.Panel();
       this.btnAliasManager = new System.Windows.Forms.Button();
       this.btnEncerraAmbiente = new System.Windows.Forms.Button();
@@ -73,20 +82,11 @@
       this.btnHostApp = new System.Windows.Forms.Button();
       this.btnRmexe = new System.Windows.Forms.Button();
       this.btnServiceManager = new System.Windows.Forms.Button();
-      this.lbVersao = new System.Windows.Forms.Label();
-      this.groupBox1 = new System.Windows.Forms.GroupBox();
-      this.bgWorkerAplicar = new System.ComponentModel.BackgroundWorker();
-      this.lblMessage = new System.Windows.Forms.Label();
-      this.lstAmbientes = new System.Windows.Forms.ListView();
-      this.groupBox2 = new System.Windows.Forms.GroupBox();
-      this.btnRefreshAmbientes = new System.Windows.Forms.Button();
-      this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-      this.btnAbrirRmNet = new System.Windows.Forms.Button();
+      this.groupBox2.SuspendLayout();
       this.grpConfig.SuspendLayout();
       this.grpSmartClient.SuspendLayout();
-      this.pnlButtons.SuspendLayout();
       this.groupBox1.SuspendLayout();
-      this.groupBox2.SuspendLayout();
+      this.pnlButtons.SuspendLayout();
       this.SuspendLayout();
       // 
       // label1
@@ -101,6 +101,103 @@
       // timer1
       // 
       this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+      // 
+      // lbVersaoaLabel
+      // 
+      this.lbVersaoaLabel.AutoSize = true;
+      this.lbVersaoaLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+      this.lbVersaoaLabel.Location = new System.Drawing.Point(9, 9);
+      this.lbVersaoaLabel.Name = "lbVersaoaLabel";
+      this.lbVersaoaLabel.Size = new System.Drawing.Size(50, 13);
+      this.lbVersaoaLabel.TabIndex = 33;
+      this.lbVersaoaLabel.Text = "Versão:";
+      // 
+      // lbVersao
+      // 
+      this.lbVersao.AutoSize = true;
+      this.lbVersao.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+      this.lbVersao.Location = new System.Drawing.Point(65, 9);
+      this.lbVersao.Name = "lbVersao";
+      this.lbVersao.Size = new System.Drawing.Size(56, 13);
+      this.lbVersao.TabIndex = 34;
+      this.lbVersao.Text = "lbVersao";
+      // 
+      // bgWorkerAplicar
+      // 
+      this.bgWorkerAplicar.WorkerSupportsCancellation = true;
+      this.bgWorkerAplicar.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
+      this.bgWorkerAplicar.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
+      // 
+      // lblMessage
+      // 
+      this.lblMessage.AutoSize = true;
+      this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lblMessage.ForeColor = System.Drawing.SystemColors.Highlight;
+      this.lblMessage.Location = new System.Drawing.Point(179, 4);
+      this.lblMessage.Name = "lblMessage";
+      this.lblMessage.Size = new System.Drawing.Size(99, 20);
+      this.lblMessage.TabIndex = 34;
+      this.lblMessage.Text = "lblMessage";
+      this.lblMessage.Visible = false;
+      // 
+      // lstAmbientes
+      // 
+      this.lstAmbientes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+      this.lstAmbientes.BackColor = System.Drawing.SystemColors.ButtonFace;
+      this.lstAmbientes.BackgroundImageTiled = true;
+      this.lstAmbientes.BorderStyle = System.Windows.Forms.BorderStyle.None;
+      this.lstAmbientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lstAmbientes.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+      this.lstAmbientes.HideSelection = false;
+      this.lstAmbientes.Location = new System.Drawing.Point(3, 13);
+      this.lstAmbientes.Name = "lstAmbientes";
+      this.lstAmbientes.Size = new System.Drawing.Size(250, 443);
+      this.lstAmbientes.TabIndex = 36;
+      this.lstAmbientes.TileSize = new System.Drawing.Size(220, 30);
+      this.lstAmbientes.UseCompatibleStateImageBehavior = false;
+      this.lstAmbientes.View = System.Windows.Forms.View.Tile;
+      this.lstAmbientes.DoubleClick += new System.EventHandler(this.lstAmbientes_DoubleClick);
+      // 
+      // groupBox2
+      // 
+      this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+      this.groupBox2.Controls.Add(this.lstAmbientes);
+      this.groupBox2.Location = new System.Drawing.Point(12, 60);
+      this.groupBox2.Name = "groupBox2";
+      this.groupBox2.Size = new System.Drawing.Size(259, 462);
+      this.groupBox2.TabIndex = 37;
+      this.groupBox2.TabStop = false;
+      // 
+      // btnRefreshAmbientes
+      // 
+      this.btnRefreshAmbientes.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+      this.btnRefreshAmbientes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+      this.btnRefreshAmbientes.FlatAppearance.BorderSize = 0;
+      this.btnRefreshAmbientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.btnRefreshAmbientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnRefreshAmbientes.Location = new System.Drawing.Point(183, 35);
+      this.btnRefreshAmbientes.Name = "btnRefreshAmbientes";
+      this.btnRefreshAmbientes.Size = new System.Drawing.Size(56, 26);
+      this.btnRefreshAmbientes.TabIndex = 37;
+      this.btnRefreshAmbientes.Text = "Atualizar";
+      this.btnRefreshAmbientes.UseVisualStyleBackColor = false;
+      this.btnRefreshAmbientes.Click += new System.EventHandler(this.btnRefreshAmbientes_Click);
+      // 
+      // btnAbrirRmNet
+      // 
+      this.btnAbrirRmNet.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+      this.btnAbrirRmNet.BackgroundImage = global::RMTools.Properties.Resources.Icone_Pasta;
+      this.btnAbrirRmNet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+      this.btnAbrirRmNet.FlatAppearance.BorderSize = 0;
+      this.btnAbrirRmNet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.btnAbrirRmNet.Location = new System.Drawing.Point(245, 35);
+      this.btnAbrirRmNet.Name = "btnAbrirRmNet";
+      this.btnAbrirRmNet.Size = new System.Drawing.Size(26, 26);
+      this.btnAbrirRmNet.TabIndex = 6;
+      this.btnAbrirRmNet.UseVisualStyleBackColor = false;
+      this.btnAbrirRmNet.Click += new System.EventHandler(this.btnAbrirRmNet_Click);
       // 
       // grpConfig
       // 
@@ -135,10 +232,10 @@
       this.grpConfig.Controls.Add(this.txbHttpPort);
       this.grpConfig.Controls.Add(this.txbApiPort);
       this.grpConfig.Controls.Add(this.label9);
-      this.grpConfig.Location = new System.Drawing.Point(277, 113);
+      this.grpConfig.Location = new System.Drawing.Point(277, 119);
       this.grpConfig.Name = "grpConfig";
-      this.grpConfig.Size = new System.Drawing.Size(688, 406);
-      this.grpConfig.TabIndex = 31;
+      this.grpConfig.Size = new System.Drawing.Size(727, 403);
+      this.grpConfig.TabIndex = 38;
       this.grpConfig.TabStop = false;
       // 
       // label5
@@ -167,7 +264,6 @@
       this.chbSmartClient.TabIndex = 7;
       this.chbSmartClient.Text = "Habilitar SmartClient";
       this.chbSmartClient.UseVisualStyleBackColor = true;
-      this.chbSmartClient.CheckStateChanged += new System.EventHandler(this.chbSmartClient_CheckStateChanged);
       // 
       // grpSmartClient
       // 
@@ -192,7 +288,6 @@
       this.chbUpdateClient.TabIndex = 9;
       this.chbUpdateClient.Text = "Habilitar Client";
       this.chbUpdateClient.UseVisualStyleBackColor = true;
-      this.chbUpdateClient.CheckStateChanged += new System.EventHandler(this.chbUpdateClient_CheckStateChanged);
       // 
       // chbUpdateServer
       // 
@@ -204,7 +299,6 @@
       this.chbUpdateServer.TabIndex = 8;
       this.chbUpdateServer.Text = "Habilitar Server";
       this.chbUpdateServer.UseVisualStyleBackColor = true;
-      this.chbUpdateServer.CheckStateChanged += new System.EventHandler(this.chbUpdateServer_CheckStateChanged);
       // 
       // label3
       // 
@@ -252,7 +346,6 @@
       this.btnAplicar.TabIndex = 18;
       this.btnAplicar.Text = "Aplicar";
       this.btnAplicar.UseVisualStyleBackColor = false;
-      this.btnAplicar.Click += new System.EventHandler(this.btnAplicar_Click);
       // 
       // label14
       // 
@@ -288,9 +381,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       this.lstConfig.Enabled = false;
       this.lstConfig.FormattingEnabled = true;
-      this.lstConfig.Location = new System.Drawing.Point(434, 43);
+      this.lstConfig.Location = new System.Drawing.Point(433, 42);
       this.lstConfig.Name = "lstConfig";
-      this.lstConfig.Size = new System.Drawing.Size(248, 290);
+      this.lstConfig.Size = new System.Drawing.Size(288, 329);
       this.lstConfig.TabIndex = 7;
       // 
       // label13
@@ -442,15 +535,16 @@
       this.label9.TabIndex = 18;
       this.label9.Text = "ApiPort";
       // 
-      // lbVersaoaLabel
+      // groupBox1
       // 
-      this.lbVersaoaLabel.AutoSize = true;
-      this.lbVersaoaLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-      this.lbVersaoaLabel.Location = new System.Drawing.Point(9, 9);
-      this.lbVersaoaLabel.Name = "lbVersaoaLabel";
-      this.lbVersaoaLabel.Size = new System.Drawing.Size(50, 13);
-      this.lbVersaoaLabel.TabIndex = 33;
-      this.lbVersaoaLabel.Text = "Versão:";
+      this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.groupBox1.Controls.Add(this.pnlButtons);
+      this.groupBox1.Location = new System.Drawing.Point(277, 60);
+      this.groupBox1.Name = "groupBox1";
+      this.groupBox1.Size = new System.Drawing.Size(727, 53);
+      this.groupBox1.TabIndex = 39;
+      this.groupBox1.TabStop = false;
       // 
       // pnlButtons
       // 
@@ -460,9 +554,9 @@
       this.pnlButtons.Controls.Add(this.btnHostApp);
       this.pnlButtons.Controls.Add(this.btnRmexe);
       this.pnlButtons.Controls.Add(this.btnServiceManager);
-      this.pnlButtons.Location = new System.Drawing.Point(10, 11);
+      this.pnlButtons.Location = new System.Drawing.Point(6, 13);
       this.pnlButtons.Name = "pnlButtons";
-      this.pnlButtons.Size = new System.Drawing.Size(671, 34);
+      this.pnlButtons.Size = new System.Drawing.Size(710, 34);
       this.pnlButtons.TabIndex = 32;
       // 
       // btnAliasManager
@@ -471,7 +565,7 @@
       this.btnAliasManager.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
       this.btnAliasManager.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
       this.btnAliasManager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnAliasManager.Location = new System.Drawing.Point(330, 3);
+      this.btnAliasManager.Location = new System.Drawing.Point(330, 5);
       this.btnAliasManager.Name = "btnAliasManager";
       this.btnAliasManager.Size = new System.Drawing.Size(103, 26);
       this.btnAliasManager.TabIndex = 3;
@@ -487,7 +581,7 @@
       this.btnEncerraAmbiente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnEncerraAmbiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnEncerraAmbiente.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-      this.btnEncerraAmbiente.Location = new System.Drawing.Point(548, 3);
+      this.btnEncerraAmbiente.Location = new System.Drawing.Point(548, 5);
       this.btnEncerraAmbiente.Name = "btnEncerraAmbiente";
       this.btnEncerraAmbiente.Size = new System.Drawing.Size(120, 26);
       this.btnEncerraAmbiente.TabIndex = 5;
@@ -501,7 +595,7 @@
       this.btnApagarBroker.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
       this.btnApagarBroker.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
       this.btnApagarBroker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnApagarBroker.Location = new System.Drawing.Point(439, 3);
+      this.btnApagarBroker.Location = new System.Drawing.Point(439, 5);
       this.btnApagarBroker.Name = "btnApagarBroker";
       this.btnApagarBroker.Size = new System.Drawing.Size(103, 26);
       this.btnApagarBroker.TabIndex = 4;
@@ -514,7 +608,7 @@
       this.btnHostApp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
       this.btnHostApp.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
       this.btnHostApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnHostApp.Location = new System.Drawing.Point(112, 3);
+      this.btnHostApp.Location = new System.Drawing.Point(112, 5);
       this.btnHostApp.Name = "btnHostApp";
       this.btnHostApp.Size = new System.Drawing.Size(103, 26);
       this.btnHostApp.TabIndex = 1;
@@ -527,7 +621,7 @@
       this.btnRmexe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
       this.btnRmexe.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
       this.btnRmexe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnRmexe.Location = new System.Drawing.Point(3, 3);
+      this.btnRmexe.Location = new System.Drawing.Point(3, 5);
       this.btnRmexe.Name = "btnRmexe";
       this.btnRmexe.Size = new System.Drawing.Size(103, 26);
       this.btnRmexe.TabIndex = 0;
@@ -540,137 +634,39 @@
       this.btnServiceManager.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
       this.btnServiceManager.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
       this.btnServiceManager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnServiceManager.Location = new System.Drawing.Point(221, 3);
+      this.btnServiceManager.Location = new System.Drawing.Point(221, 5);
       this.btnServiceManager.Name = "btnServiceManager";
       this.btnServiceManager.Size = new System.Drawing.Size(103, 26);
       this.btnServiceManager.TabIndex = 2;
       this.btnServiceManager.Text = "Service Manager";
       this.btnServiceManager.UseVisualStyleBackColor = false;
       // 
-      // lbVersao
-      // 
-      this.lbVersao.AutoSize = true;
-      this.lbVersao.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-      this.lbVersao.Location = new System.Drawing.Point(65, 9);
-      this.lbVersao.Name = "lbVersao";
-      this.lbVersao.Size = new System.Drawing.Size(56, 13);
-      this.lbVersao.TabIndex = 34;
-      this.lbVersao.Text = "lbVersao";
-      // 
-      // groupBox1
-      // 
-      this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.groupBox1.Controls.Add(this.pnlButtons);
-      this.groupBox1.Location = new System.Drawing.Point(277, 60);
-      this.groupBox1.Name = "groupBox1";
-      this.groupBox1.Size = new System.Drawing.Size(688, 47);
-      this.groupBox1.TabIndex = 35;
-      this.groupBox1.TabStop = false;
-      // 
-      // bgWorkerAplicar
-      // 
-      this.bgWorkerAplicar.WorkerSupportsCancellation = true;
-      this.bgWorkerAplicar.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
-      this.bgWorkerAplicar.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
-      // 
-      // lblMessage
-      // 
-      this.lblMessage.AutoSize = true;
-      this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.lblMessage.ForeColor = System.Drawing.SystemColors.Highlight;
-      this.lblMessage.Location = new System.Drawing.Point(179, 4);
-      this.lblMessage.Name = "lblMessage";
-      this.lblMessage.Size = new System.Drawing.Size(99, 20);
-      this.lblMessage.TabIndex = 34;
-      this.lblMessage.Text = "lblMessage";
-      this.lblMessage.Visible = false;
-      // 
-      // lstAmbientes
-      // 
-      this.lstAmbientes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-      this.lstAmbientes.BackColor = System.Drawing.SystemColors.ButtonFace;
-      this.lstAmbientes.BackgroundImageTiled = true;
-      this.lstAmbientes.BorderStyle = System.Windows.Forms.BorderStyle.None;
-      this.lstAmbientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.lstAmbientes.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-      this.lstAmbientes.HideSelection = false;
-      this.lstAmbientes.Location = new System.Drawing.Point(3, 13);
-      this.lstAmbientes.Name = "lstAmbientes";
-      this.lstAmbientes.Size = new System.Drawing.Size(250, 446);
-      this.lstAmbientes.TabIndex = 36;
-      this.lstAmbientes.TileSize = new System.Drawing.Size(220, 30);
-      this.lstAmbientes.UseCompatibleStateImageBehavior = false;
-      this.lstAmbientes.View = System.Windows.Forms.View.Tile;
-      this.lstAmbientes.DoubleClick += new System.EventHandler(this.lstAmbientes_DoubleClick);
-      // 
-      // groupBox2
-      // 
-      this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-      this.groupBox2.Controls.Add(this.lstAmbientes);
-      this.groupBox2.Location = new System.Drawing.Point(12, 60);
-      this.groupBox2.Name = "groupBox2";
-      this.groupBox2.Size = new System.Drawing.Size(259, 462);
-      this.groupBox2.TabIndex = 37;
-      this.groupBox2.TabStop = false;
-      // 
-      // btnRefreshAmbientes
-      // 
-      this.btnRefreshAmbientes.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-      this.btnRefreshAmbientes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-      this.btnRefreshAmbientes.FlatAppearance.BorderSize = 0;
-      this.btnRefreshAmbientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnRefreshAmbientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.btnRefreshAmbientes.Location = new System.Drawing.Point(183, 35);
-      this.btnRefreshAmbientes.Name = "btnRefreshAmbientes";
-      this.btnRefreshAmbientes.Size = new System.Drawing.Size(56, 26);
-      this.btnRefreshAmbientes.TabIndex = 37;
-      this.btnRefreshAmbientes.Text = "Atualizar";
-      this.btnRefreshAmbientes.UseVisualStyleBackColor = false;
-      this.btnRefreshAmbientes.Click += new System.EventHandler(this.btnRefreshAmbientes_Click);
-      // 
-      // btnAbrirRmNet
-      // 
-      this.btnAbrirRmNet.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-      this.btnAbrirRmNet.BackgroundImage = global::RMTools.Properties.Resources.Icone_Pasta;
-      this.btnAbrirRmNet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-      this.btnAbrirRmNet.FlatAppearance.BorderSize = 0;
-      this.btnAbrirRmNet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnAbrirRmNet.Location = new System.Drawing.Point(245, 35);
-      this.btnAbrirRmNet.Name = "btnAbrirRmNet";
-      this.btnAbrirRmNet.Size = new System.Drawing.Size(26, 26);
-      this.btnAbrirRmNet.TabIndex = 6;
-      this.btnAbrirRmNet.UseVisualStyleBackColor = false;
-      this.btnAbrirRmNet.Click += new System.EventHandler(this.btnAbrirRmNet_Click);
-      // 
       // FormPrincipal
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(977, 524);
+      this.ClientSize = new System.Drawing.Size(1035, 534);
+      this.Controls.Add(this.grpConfig);
+      this.Controls.Add(this.groupBox1);
       this.Controls.Add(this.btnAbrirRmNet);
       this.Controls.Add(this.btnRefreshAmbientes);
       this.Controls.Add(this.groupBox2);
       this.Controls.Add(this.lblMessage);
-      this.Controls.Add(this.groupBox1);
       this.Controls.Add(this.lbVersao);
       this.Controls.Add(this.lbVersaoaLabel);
-      this.Controls.Add(this.grpConfig);
       this.Controls.Add(this.label1);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-      this.MinimumSize = new System.Drawing.Size(993, 562);
+      this.MinimumSize = new System.Drawing.Size(991, 556);
       this.Name = "FormPrincipal";
       this.Text = "RM Tools";
       this.Load += new System.EventHandler(this.FormPrincipal_Load);
+      this.groupBox2.ResumeLayout(false);
       this.grpConfig.ResumeLayout(false);
       this.grpConfig.PerformLayout();
       this.grpSmartClient.ResumeLayout(false);
       this.grpSmartClient.PerformLayout();
-      this.pnlButtons.ResumeLayout(false);
       this.groupBox1.ResumeLayout(false);
-      this.groupBox2.ResumeLayout(false);
+      this.pnlButtons.ResumeLayout(false);
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -679,7 +675,27 @@
     #endregion
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Timer timer1;
+    private System.Windows.Forms.Label lbVersaoaLabel;
+    private System.Windows.Forms.Label lbVersao;
+    private System.ComponentModel.BackgroundWorker bgWorkerAplicar;
+    private System.Windows.Forms.Label lblMessage;
+    private System.Windows.Forms.ListView lstAmbientes;
+    private System.Windows.Forms.GroupBox groupBox2;
+    private System.Windows.Forms.ToolTip toolTip1;
+    private System.Windows.Forms.Button btnRefreshAmbientes;
+    private System.Windows.Forms.Button btnAbrirRmNet;
     private System.Windows.Forms.GroupBox grpConfig;
+    private System.Windows.Forms.Label label5;
+    private System.Windows.Forms.TextBox txbDefaultDb;
+    private System.Windows.Forms.CheckBox chbSmartClient;
+    private System.Windows.Forms.GroupBox grpSmartClient;
+    private System.Windows.Forms.CheckBox chbUpdateClient;
+    private System.Windows.Forms.CheckBox chbUpdateServer;
+    private System.Windows.Forms.Label label3;
+    private System.Windows.Forms.TextBox txbServidor;
+    private System.Windows.Forms.ProgressBar progressBarAplicar;
+    private System.Windows.Forms.CheckBox chbTraceFileRmExe;
+    private System.Windows.Forms.Button btnAplicar;
     private System.Windows.Forms.Label label14;
     private System.Windows.Forms.CheckBox chbNCamadas;
     private System.Windows.Forms.TextBox txbLocalizationLanguage;
@@ -701,34 +717,14 @@
     private System.Windows.Forms.TextBox txbHttpPort;
     private System.Windows.Forms.TextBox txbApiPort;
     private System.Windows.Forms.Label label9;
-    private System.Windows.Forms.Label lbVersaoaLabel;
+    private System.Windows.Forms.GroupBox groupBox1;
     private System.Windows.Forms.Panel pnlButtons;
+    private System.Windows.Forms.Button btnAliasManager;
     private System.Windows.Forms.Button btnEncerraAmbiente;
     private System.Windows.Forms.Button btnApagarBroker;
     private System.Windows.Forms.Button btnHostApp;
-    private System.Windows.Forms.Button btnServiceManager;
-    private System.Windows.Forms.Button btnAliasManager;
     private System.Windows.Forms.Button btnRmexe;
-    private System.Windows.Forms.Label lbVersao;
-    private System.Windows.Forms.GroupBox groupBox1;
-    private System.Windows.Forms.Button btnAplicar;
-    private System.Windows.Forms.CheckBox chbTraceFileRmExe;
-    private System.Windows.Forms.ProgressBar progressBarAplicar;
-    private System.ComponentModel.BackgroundWorker bgWorkerAplicar;
-    private System.Windows.Forms.Label lblMessage;
-    private System.Windows.Forms.CheckBox chbSmartClient;
-    private System.Windows.Forms.Label label3;
-    private System.Windows.Forms.TextBox txbServidor;
-    private System.Windows.Forms.GroupBox grpSmartClient;
-    private System.Windows.Forms.CheckBox chbUpdateServer;
-    private System.Windows.Forms.CheckBox chbUpdateClient;
-    private System.Windows.Forms.ListView lstAmbientes;
-    private System.Windows.Forms.GroupBox groupBox2;
-    private System.Windows.Forms.ToolTip toolTip1;
-    private System.Windows.Forms.Button btnRefreshAmbientes;
-    private System.Windows.Forms.Label label5;
-    private System.Windows.Forms.TextBox txbDefaultDb;
-    private System.Windows.Forms.Button btnAbrirRmNet;
+    private System.Windows.Forms.Button btnServiceManager;
   }
 }
 
