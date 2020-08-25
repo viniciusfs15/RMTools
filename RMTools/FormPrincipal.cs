@@ -23,7 +23,12 @@ namespace RMTools
       btnAliasManager.Click += new EventHandler(btnAliasManager_Click);
       btnEncerraAmbiente.Click += new EventHandler(btnEncerraAmbiente_Click);
       btnHostApp.Click += new EventHandler(btnHostApp_Click);
+      btnAplicar.Click += new EventHandler(btnAplicar_Click);
       btnServiceManager.Click += new EventHandler(btnServiceManager_Click);
+      btnRefreshAmbientes.Click += new EventHandler(btnRefreshAmbientes_Click);
+      chbSmartClient.CheckStateChanged += new EventHandler(chbSmartClient_CheckStateChanged);
+      chbUpdateServer.CheckStateChanged += new EventHandler(chbUpdateServer_CheckStateChanged);
+      chbUpdateClient.CheckStateChanged += new EventHandler(chbUpdateClient_CheckStateChanged);
       lstConfig.MouseDoubleClick += new MouseEventHandler(lstConfig_MouseDoubleClick);
       lstAmbientes.ItemSelectionChanged += new ListViewItemSelectionChangedEventHandler(lstAmbientes_ItemSelectionChanged);
 
@@ -112,11 +117,11 @@ namespace RMTools
 
     private void FormPrincipal_Load(object sender, EventArgs e)
     {
-      if (!ToolProcess.CheckDomain())
+      /*if (!ToolProcess.CheckDomain())
       {
         ToolProcess.Print(Properties.Resources.ForaDoDominio, "e");
         Application.Exit();
-      }
+      }*/
       
       bool validaAmbientes = Ambiente.LoadAmbientes();
       if (!validaAmbientes)
@@ -441,6 +446,7 @@ namespace RMTools
       if (chbSmartClient.Checked == true)
       {
         grpSmartClient.Enabled = true;
+        chbNCamadas.Checked = true;
         return;
       }
       grpSmartClient.Enabled = false;
