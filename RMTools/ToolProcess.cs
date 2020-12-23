@@ -10,68 +10,12 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using System.ServiceProcess;
+using System.Linq;
 
 namespace RMTools
 {
   public class ToolProcess
   {
-    /*public void CheckServices()
-    {
-      try
-      {
-        ServiceController[] scServices;
-        scServices = ServiceController.GetServices();
-        bool achouService = false;
-
-        foreach (DataGridViewRow row in dataGridHosts.Rows)
-        {
-          foreach (ServiceController scTemp in scServices)
-          {
-            if (row.Cells["ServiceName"].Value.ToString() == scTemp.ServiceName) //dontlocalize
-            {
-              achouService = true;
-
-              #region Status
-
-              switch (scTemp.Status)
-              {
-                case (ServiceControllerStatus.Running):
-                  {
-                    row.Cells["ServiceStatus"].Value = "Iniciado"; // donotlocalize
-                    break;
-                  }
-
-                case (ServiceControllerStatus.StartPending):
-                  {
-                    row.Cells["ServiceStatus"].Value = "Iniciando"; // donotlocalize
-                    break;
-                  }
-                case (ServiceControllerStatus.Stopped):
-                  {
-                    row.Cells["ServiceStatus"].Value = "Parado"; // donotlocalize
-                    break;
-                  }
-
-                case (ServiceControllerStatus.StopPending):
-                  {
-                    row.Cells["ServiceStatus"].Value = "Parando"; // donotlocalize
-                    break;
-                  }
-              }
-
-              #endregion Status
-            }
-          }
-
-          if (!achouService)
-            row.Cells["ServiceStatus"].Value = "Serviço não existe"; //dontlocalize
-
-          achouService = false;
-        }
-      }
-      catch { }
-    }*/
-
     internal static bool VerifyHost(out string value)
     {
       value = "N/A";
@@ -99,14 +43,15 @@ namespace RMTools
       value = "N/A";
       List<Host> hosts = ListHosts();
 
-      foreach (var host in hosts)
+      Host host = hosts.Find(x => x.GetDiretory().ToUpper() == ambiente.pathRmnet.ToUpper());
+      if (host != null)
       {
-        if (host.GetDiretory().ToUpper() == ambiente.pathRmnet.ToUpper() && host.Type == "Service")
+        if (host.Type == "Service")
         {
           value = "Service";
           return true;
         }
-        else if (host.GetDiretory().ToUpper() == ambiente.pathRmnet.ToUpper() && host.Type == "App")
+        else if (host.Type == "App")
         {
           value = "App";
           return true;
@@ -187,10 +132,11 @@ namespace RMTools
     public static void StopHostApp()
     {
       KillProcess("RM.Host.JobRunner");
-      List<Host> hosts = ListHosts();
-      foreach (var host in hosts)
+
+      Host host = ListHosts().Find(x => Path.GetDirectoryName(x.HostPath).ToLower() == Ambiente.Selected.pathRmnet.ToLower());
+      if(host != null)
       {
-        if (Path.GetDirectoryName(host.HostPath).ToLower() == Ambiente.Selected.pathRmnet.ToLower() && host.Type == "App")
+        if (host.Type == "App")
         {
           KillProcess(host.PID);
         }
@@ -201,14 +147,21 @@ namespace RMTools
     {
       Process[] listProcess = Process.GetProcesses();
       List<Host> list = new List<Host>();
-      
-      foreach (var process in listProcess)
+
+      var rmHost = from n in listProcess
+                  where n.ProcessName.Contains("RM.Host") 
+                  && !n.ProcessName.Contains("ServiceManager")
+                  && !n.ProcessName.Contains("Cleaner")
+                  && !n.ProcessName.Contains("JobRunner")
+                  select n;
+
+      foreach (var process in rmHost)
       {
-        if (process.ProcessName.Contains("RM.Host") 
+        /*if (process.ProcessName.Contains("RM.Host") 
           && !process.ProcessName.Contains("ServiceManager") 
           && !process.ProcessName.Contains("Cleaner")
           && !process.ProcessName.Contains("JobRunner"))
-        {
+        {*/
           Host host = new Host();
           host.Name = process.ProcessName;
           host.HostPath = process.GetProcessPath();
@@ -218,7 +171,7 @@ namespace RMTools
           else
             host.Type = "App";
           list.Add(host);
-        }
+        //}
       }
       return list;
     }
@@ -249,11 +202,11 @@ namespace RMTools
       }
       else if (result == "Service")
       {
-        KillProcess("RM.Host.JobRunner");
-        List<Host> hosts = ListHosts();
-        foreach (var host in hosts)
+        KillProcess("RM.Host.JobRunner");        
+        Host host = ListHosts().Find(x => Path.GetDirectoryName(x.HostPath).ToLower() == Ambiente.Selected.pathRmnet.ToLower());
+        if (host != null)
         {
-          if (Path.GetDirectoryName(host.HostPath).ToLower() == Ambiente.Selected.pathRmnet.ToLower() && host.Type == "Service")
+          if (host.Type == "Service")
           {
             KillProcess(host.Name);
           }

@@ -30,6 +30,7 @@ namespace RMTools
     public static string ConfigPath { get; set; }
     public static bool UpdateServerEnabled { get; set; }
     public static string UpdateServer { get; set; }
+    public static string FileServerPath { get; set; }
 
     #endregion
 
@@ -59,6 +60,7 @@ namespace RMTools
     private static Tag _updateServerEnabled;
     private static Tag _updateServer;
     private static Tag _defaultDb;
+    private static Tag _fileServerPath;
     #endregion
 
     public static bool LoadAmbientes()
@@ -163,6 +165,7 @@ namespace RMTools
       _updateServer.Value = ConfigAction.TagValue(pathRMExeConfig, _updateServer);
       _updateServerEnabled.Value = ConfigAction.TagValue(pathHostConfig, _updateServerEnabled);
       _defaultDb.Value = ConfigAction.TagValue(pathHostConfig, _defaultDb);
+      _fileServerPath.Value = ConfigAction.TagValue(pathHostConfig, _fileServerPath);
 
       ActionsPath = _actionsPath.Value;
       ApiPort = _apiPort.Value;
@@ -181,6 +184,7 @@ namespace RMTools
       DefaultDb = _defaultDb.Value;
       UpdateServer = _updateServer.Value;
       UpdateServerEnabled = ConvertBooleanValue(_updateServerEnabled.Value);
+      FileServerPath = _fileServerPath.Value;
     }
 
     private static bool ConvertBooleanValue(string value)
@@ -245,6 +249,8 @@ namespace RMTools
       _updateServerEnabled = new Tag("UpdateServerEnabled", "");
       _updateServerEnabled.Side = "Server";
 
+      _fileServerPath = new Tag("FileServerPath", "");
+      _fileServerPath.Side = "Server";
     }
 
     public static void ApplyConfig()
@@ -270,6 +276,7 @@ namespace RMTools
       _defaultDb.Value = DefaultDb;
       _updateServer.Value = UpdateServer;
       _updateServerEnabled.Value = UpdateServerEnabled.ToString();
+      _fileServerPath.Value = FileServerPath.ToString();
 
       ConfigAction.UpdateAll(_actionsPath, Ambiente.Selected.pathRmnet);
       ConfigAction.Update(_apiPort, pathHostServiceConfig);
@@ -285,6 +292,17 @@ namespace RMTools
       ConfigAction.UpdateAll(_port, Ambiente.Selected.pathRmnet);
       ConfigAction.Update(_defaultDb, pathHostServiceConfig);
       ConfigAction.Update(_defaultDb, pathHostAppConfig);
+
+      if (_jobServer3Camadas.Value.ToLower() == "true")
+      {
+        ConfigAction.Add(_fileServerPath, pathHostAppConfig);
+        ConfigAction.Add(_fileServerPath, pathHostServiceConfig);
+      }
+      else
+      {
+        ConfigAction.Remove(_fileServerPath, pathHostAppConfig);
+        ConfigAction.Remove(_fileServerPath, pathHostServiceConfig);
+      }
 
       if (_updateServerEnabled.Value.ToLower() == "true")
       {

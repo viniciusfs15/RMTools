@@ -46,6 +46,7 @@ namespace RMTools
       toolTip1.SetToolTip(chbUpdateClient, Properties.Resources.chbUpdateClient);
       toolTip1.SetToolTip(chbUpdateServer, Properties.Resources.chbUpdateServer);
       toolTip1.SetToolTip(lstConfig, Properties.Resources.lstConfig);
+      toolTip1.SetToolTip(btnAbrirRmNet, Properties.Resources.btnAbrirRmNet);
 
 
       #endregion
@@ -57,7 +58,6 @@ namespace RMTools
       pnlButtons.Enabled = true;
       btnAbrirRmNet.Enabled = true;
       LoadAmbiente();
-      ResetTagsConfig();
       lblMessage.Visible = false;
       e.Item.BackColor = Color.Silver;
     }
@@ -112,17 +112,12 @@ namespace RMTools
 
     private void lstAmbientes_DoubleClick(object sender, EventArgs e)
     {
+      ResetTagsConfig();
       UpdateConfig();
     }
 
     private void FormPrincipal_Load(object sender, EventArgs e)
     {
-      /*if (!ToolProcess.CheckDomain())
-      {
-        ToolProcess.Print(Properties.Resources.ForaDoDominio, "e");
-        Application.Exit();
-      }*/
-      
       bool validaAmbientes = Ambiente.LoadAmbientes();
       if (!validaAmbientes)
       {
@@ -132,45 +127,43 @@ namespace RMTools
       UpdateLstAmbientes();
 
       // Reset dos campos do Form
+      this.Text = "RM Tools " + Application.ProductVersion.ToString();
       lbVersao.Text = "";
       lbVersaoaLabel.Visible = false;
       pnlButtons.Enabled = false;
       btnAbrirRmNet.Enabled = false;
       grpConfig.Enabled = false;
+      StartTimer();
     }
-    
+
     private void LoadAmbiente()
     {
+      // Proteção para caso não existam ambientes listados
       if (lstAmbientes.SelectedItems.Count == 0)
         return;
+
       ListViewItem item = lstAmbientes.SelectedItems[0];
       UpdateLstAmbientesIcons();
-      foreach (var ambiente in Ambiente.ListAmbientes)
+      Ambiente ambiente = Ambiente.ListAmbientes.Find(x => x.name == item.Text);
+
+      // Define o ambiente selecionado no cbxAmbientes
+      Ambiente.Selected = ambiente;
+      lbVersao.Text = ambiente.libVersion;
+      lbVersaoaLabel.Visible = true;
+      string value = "";
+      if (!ToolProcess.VerifyHost(Ambiente.Selected, out value))
       {
-        //if (ambiente.name == cbxAmbientes.SelectedItem.ToString())
-        if (ambiente.name == item.Text)
-        {
-          // Define o ambiente selecionado no cbxAmbientes
-          Ambiente.Selected = ambiente;
-          lbVersao.Text = ambiente.libVersion;
-          lbVersaoaLabel.Visible = true;
-          string value = "";
-          if (!ToolProcess.VerifyHost(Ambiente.Selected, out value))
-          {
-            UpdateHostStatus(2);
-          }
-          else
-          {
-            if (value == "App")
-            {
-              UpdateHostStatus(1);
-            }
-            else if (value == "Service")
-            {
-              UpdateHostStatus(3);
-            }
-          }
-        }
+        UpdateHostStatus(2);
+        return;
+      }
+      switch (value)
+      {
+        case ("App"):
+          UpdateHostStatus(1);
+          break;
+        case ("Service"):
+          UpdateHostStatus(3);
+          break;
       }
     }
 
@@ -339,12 +332,13 @@ namespace RMTools
 
     private void StartTimer()
     {
-      timer1.Interval = 1000;
+      timer1.Interval = 2000;
       timer1.Start();
     }
 
     private void timer1_Tick(object sender, EventArgs e)
     {
+      UpdateLstAmbientesIcons();
       LoadAmbiente();
       timer1.Stop();
     }
@@ -381,6 +375,8 @@ namespace RMTools
       Ambiente.LocalizationLaguage = txbLocalizationLanguage.Text;
       Ambiente.LibPath = txbLibPath.Text;
       Ambiente.DefaultDb = txbDefaultDb.Text;
+      Ambiente.FileServerPath = txbFileServerPath.Text;
+
       if (chbSmartClient.Checked)
       {
         if (chbUpdateServer.Checked)

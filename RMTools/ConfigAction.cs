@@ -95,6 +95,7 @@ namespace RMTools
 
             config.Save(configPath);
           }
+          else Update(configPath, tag.Key, tag.Value);
         }
         catch (Exception err)
         {

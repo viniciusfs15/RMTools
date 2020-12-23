@@ -61,6 +61,15 @@ namespace RMTools.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Abrir o diretório do ambiente selecionado.
+        /// </summary>
+        internal static string btnAbrirRmNet {
+            get {
+                return ResourceManager.GetString("btnAbrirRmNet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Abrir o aplicativo RM.AliasManager.exe.config do ambiente selecionado..
         /// </summary>
         internal static string btnAliasManager {

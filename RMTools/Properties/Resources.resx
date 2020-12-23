@@ -202,4 +202,7 @@
   <data name="ForaDoDominio" xml:space="preserve">
     <value>É necessário estar no domínio TOTVS para que esta aplicação seja executada.</value>
   </data>
+  <data name="btnAbrirRmNet" xml:space="preserve">
+    <value>Abrir o diretório do ambiente selecionado</value>
+  </data>
 </root>
