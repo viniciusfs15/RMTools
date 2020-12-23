@@ -16,6 +16,8 @@ namespace RMTools
 {
   public class ToolProcess
   {
+    public static List<Host> ListHosts = new List<Host>();
+
     internal static bool VerifyHost(out string value)
     {
       value = "N/A";
@@ -41,7 +43,7 @@ namespace RMTools
     internal static bool VerifyHost(Ambiente ambiente, out string value)
     {
       value = "N/A";
-      List<Host> hosts = ListHosts();
+      List<Host> hosts = ListHosts;
 
       Host host = hosts.Find(x => x.GetDiretory().ToUpper() == ambiente.pathRmnet.ToUpper());
       if (host != null)
@@ -125,7 +127,8 @@ namespace RMTools
       }
       else
       {
-        System.Diagnostics.Process.Start(Ambiente.Selected.pathRmnet + @"\RM.Host.exe");
+        if(File.Exists(Ambiente.Selected.pathRmnet + @"\RM.Host.exe"))
+          System.Diagnostics.Process.Start(Ambiente.Selected.pathRmnet + @"\RM.Host.exe");
       }
     }
 
@@ -133,7 +136,7 @@ namespace RMTools
     {
       KillProcess("RM.Host.JobRunner");
 
-      Host host = ListHosts().Find(x => Path.GetDirectoryName(x.HostPath).ToLower() == Ambiente.Selected.pathRmnet.ToLower());
+      Host host = ListHosts.Find(x => Path.GetDirectoryName(x.HostPath).ToLower() == Ambiente.Selected.pathRmnet.ToLower());
       if(host != null)
       {
         if (host.Type == "App")
@@ -143,10 +146,10 @@ namespace RMTools
       }
     }
 
-    public static List<Host> ListHosts()
+    public static void ListarHosts()
     {
+      ListHosts.Clear();
       Process[] listProcess = Process.GetProcesses();
-      List<Host> list = new List<Host>();
 
       var rmHost = from n in listProcess
                   where n.ProcessName.Contains("RM.Host") 
@@ -154,14 +157,9 @@ namespace RMTools
                   && !n.ProcessName.Contains("Cleaner")
                   && !n.ProcessName.Contains("JobRunner")
                   select n;
-
+      
       foreach (var process in rmHost)
       {
-        /*if (process.ProcessName.Contains("RM.Host") 
-          && !process.ProcessName.Contains("ServiceManager") 
-          && !process.ProcessName.Contains("Cleaner")
-          && !process.ProcessName.Contains("JobRunner"))
-        {*/
           Host host = new Host();
           host.Name = process.ProcessName;
           host.HostPath = process.GetProcessPath();
@@ -170,10 +168,8 @@ namespace RMTools
             host.Type = "Service";
           else
             host.Type = "App";
-          list.Add(host);
-        //}
+        ListHosts.Add(host);
       }
-      return list;
     }
 
     internal static bool CheckDomain()
@@ -203,7 +199,7 @@ namespace RMTools
       else if (result == "Service")
       {
         KillProcess("RM.Host.JobRunner");        
-        Host host = ListHosts().Find(x => Path.GetDirectoryName(x.HostPath).ToLower() == Ambiente.Selected.pathRmnet.ToLower());
+        Host host = ListHosts.Find(x => Path.GetDirectoryName(x.HostPath).ToLower() == Ambiente.Selected.pathRmnet.ToLower());
         if (host != null)
         {
           if (host.Type == "Service")

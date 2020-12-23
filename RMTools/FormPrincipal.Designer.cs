@@ -247,7 +247,7 @@
       this.txbFileServerPath.Location = new System.Drawing.Point(11, 298);
       this.txbFileServerPath.Name = "txbFileServerPath";
       this.txbFileServerPath.Size = new System.Drawing.Size(397, 20);
-      this.txbFileServerPath.TabIndex = 39;
+      this.txbFileServerPath.TabIndex = 19;
       // 
       // label6
       // 
@@ -272,7 +272,7 @@
       this.txbDefaultDb.Location = new System.Drawing.Point(11, 177);
       this.txbDefaultDb.Name = "txbDefaultDb";
       this.txbDefaultDb.Size = new System.Drawing.Size(156, 20);
-      this.txbDefaultDb.TabIndex = 14;
+      this.txbDefaultDb.TabIndex = 15;
       // 
       // chbSmartClient
       // 
@@ -334,7 +334,7 @@
       this.txbServidor.Location = new System.Drawing.Point(265, 11);
       this.txbServidor.Name = "txbServidor";
       this.txbServidor.Size = new System.Drawing.Size(132, 20);
-      this.txbServidor.TabIndex = 37;
+      this.txbServidor.TabIndex = 10;
       // 
       // progressBarAplicar
       // 
@@ -363,7 +363,7 @@
       this.btnAplicar.Location = new System.Drawing.Point(222, 348);
       this.btnAplicar.Name = "btnAplicar";
       this.btnAplicar.Size = new System.Drawing.Size(90, 23);
-      this.btnAplicar.TabIndex = 18;
+      this.btnAplicar.TabIndex = 20;
       this.btnAplicar.Text = "Aplicar";
       this.btnAplicar.UseVisualStyleBackColor = false;
       // 
@@ -392,7 +392,7 @@
       this.txbLocalizationLanguage.Location = new System.Drawing.Point(176, 177);
       this.txbLocalizationLanguage.Name = "txbLocalizationLanguage";
       this.txbLocalizationLanguage.Size = new System.Drawing.Size(108, 20);
-      this.txbLocalizationLanguage.TabIndex = 15;
+      this.txbLocalizationLanguage.TabIndex = 16;
       // 
       // lstConfig
       // 
@@ -429,7 +429,7 @@
       this.txbPort.Location = new System.Drawing.Point(232, 138);
       this.txbPort.Name = "txbPort";
       this.txbPort.Size = new System.Drawing.Size(52, 20);
-      this.txbPort.TabIndex = 11;
+      this.txbPort.TabIndex = 12;
       // 
       // chbEnableCompression
       // 
@@ -467,7 +467,7 @@
       this.txbLibPath.Location = new System.Drawing.Point(11, 216);
       this.txbLibPath.Name = "txbLibPath";
       this.txbLibPath.Size = new System.Drawing.Size(397, 20);
-      this.txbLibPath.TabIndex = 16;
+      this.txbLibPath.TabIndex = 17;
       // 
       // chbTraceFileHost
       // 
@@ -505,14 +505,14 @@
       this.txbHost.Location = new System.Drawing.Point(11, 138);
       this.txbHost.Name = "txbHost";
       this.txbHost.Size = new System.Drawing.Size(210, 20);
-      this.txbHost.TabIndex = 10;
+      this.txbHost.TabIndex = 11;
       // 
       // txbActionsPath
       // 
       this.txbActionsPath.Location = new System.Drawing.Point(11, 255);
       this.txbActionsPath.Name = "txbActionsPath";
       this.txbActionsPath.Size = new System.Drawing.Size(397, 20);
-      this.txbActionsPath.TabIndex = 17;
+      this.txbActionsPath.TabIndex = 18;
       // 
       // label10
       // 
@@ -537,14 +537,14 @@
       this.txbHttpPort.Location = new System.Drawing.Point(294, 138);
       this.txbHttpPort.Name = "txbHttpPort";
       this.txbHttpPort.Size = new System.Drawing.Size(52, 20);
-      this.txbHttpPort.TabIndex = 12;
+      this.txbHttpPort.TabIndex = 13;
       // 
       // txbApiPort
       // 
       this.txbApiPort.Location = new System.Drawing.Point(356, 138);
       this.txbApiPort.Name = "txbApiPort";
       this.txbApiPort.Size = new System.Drawing.Size(52, 20);
-      this.txbApiPort.TabIndex = 13;
+      this.txbApiPort.TabIndex = 14;
       // 
       // label9
       // 

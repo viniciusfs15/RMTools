@@ -322,6 +322,15 @@ namespace RMTools.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to O ambiente selecionado foi alterado durante a execução do aplicativo, a lista de ambientes será atualizada..
+        /// </summary>
+        internal static string MsgAmbienteAlterado {
+            get {
+                return ResourceManager.GetString("MsgAmbienteAlterado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap TxtIconDelete {

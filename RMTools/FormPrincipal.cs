@@ -7,6 +7,7 @@ using System.DirectoryServices.ActiveDirectory;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.ServiceProcess;
 using System.Text;
 using System.Windows.Forms;
 
@@ -54,10 +55,10 @@ namespace RMTools
 
     private void lstAmbientes_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
     {
+      LoadAmbiente();
       grpConfig.Enabled = false;
       pnlButtons.Enabled = true;
       btnAbrirRmNet.Enabled = true;
-      LoadAmbiente();
       lblMessage.Visible = false;
       e.Item.BackColor = Color.Silver;
     }
@@ -87,17 +88,21 @@ namespace RMTools
 
     private void UpdateLstAmbientesIcons()
     {
+      // Carrega a lista de hosts ativos
+      ToolProcess.ListarHosts();
+
       foreach (ListViewItem item in lstAmbientes.Items)
       {
+        // reseta a cor e o incone do item
         item.ForeColor = Color.Black;
         item.ImageKey = "Host_off2";
+
         foreach (var ambiente in Ambiente.ListAmbientes)
         {
-          item.BackColor = Color.WhiteSmoke;
-
-          foreach (Host host in ToolProcess.ListHosts())
+          item.BackColor = SystemColors.Control;
+          if (ambiente.name.ToLower() == item.Text.ToLower())
           {
-            if (ambiente.name.ToLower() == item.Text.ToLower())
+            foreach (Host host in ToolProcess.ListHosts)
             {
               if (ambiente.pathRmnet.ToLower() == Path.GetDirectoryName(host.HostPath).ToLower() && item.Text.ToLower() == ambiente.name.ToLower())
               {
@@ -105,6 +110,7 @@ namespace RMTools
                 item.ForeColor = Color.Green;
               }
             }
+            
           }
         }
       }
@@ -133,7 +139,8 @@ namespace RMTools
       pnlButtons.Enabled = false;
       btnAbrirRmNet.Enabled = false;
       grpConfig.Enabled = false;
-      StartTimer();
+      timer1.Interval = 2000;
+      timer1.Enabled = true;
     }
 
     private void LoadAmbiente()
@@ -145,6 +152,16 @@ namespace RMTools
       ListViewItem item = lstAmbientes.SelectedItems[0];
       UpdateLstAmbientesIcons();
       Ambiente ambiente = Ambiente.ListAmbientes.Find(x => x.name == item.Text);
+
+      // Verifica se o ambiente foi alterado durante a execução do app
+      if (!File.Exists(ambiente.pathRmnet + @"\RM.Host.exe"))
+      {
+        timer1.Enabled = false;
+        ToolProcess.Print(Properties.Resources.MsgAmbienteAlterado, "w");
+        UpdateLstAmbientes();
+        timer1.Enabled = true;
+      }
+          
 
       // Define o ambiente selecionado no cbxAmbientes
       Ambiente.Selected = ambiente;
@@ -315,7 +332,6 @@ namespace RMTools
       {
         ToolProcess.StartHostApp();
       }
-      StartTimer();
     }
 
     private void btnApagarBroker_Click(object sender, EventArgs e)
@@ -329,24 +345,16 @@ namespace RMTools
         ToolProcess.Print(Properties.Resources.DeleteBrokerFalse, "e");
       } 
     }
-
-    private void StartTimer()
-    {
-      timer1.Interval = 2000;
-      timer1.Start();
-    }
-
+    
     private void timer1_Tick(object sender, EventArgs e)
     {
       UpdateLstAmbientesIcons();
       LoadAmbiente();
-      timer1.Stop();
     }
 
     private void btnEncerraAmbiente_Click(object sender, EventArgs e)
     {
       ToolProcess.KillAmbiente();
-      StartTimer();
     }
 
     private void btnAplicar_Click(object sender, EventArgs e)
