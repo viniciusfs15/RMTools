@@ -32,10 +32,7 @@
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
       this.label1 = new System.Windows.Forms.Label();
       this.timer1 = new System.Windows.Forms.Timer(this.components);
-      this.lbVersaoaLabel = new System.Windows.Forms.Label();
-      this.lbVersao = new System.Windows.Forms.Label();
       this.bgWorkerAplicar = new System.ComponentModel.BackgroundWorker();
-      this.lblMessage = new System.Windows.Forms.Label();
       this.lstAmbientes = new System.Windows.Forms.ListView();
       this.groupBox2 = new System.Windows.Forms.GroupBox();
       this.btnRefreshAmbientes = new System.Windows.Forms.Button();
@@ -84,6 +81,9 @@
       this.btnHostApp = new System.Windows.Forms.Button();
       this.btnRmexe = new System.Windows.Forms.Button();
       this.btnServiceManager = new System.Windows.Forms.Button();
+      this.lblMessage = new System.Windows.Forms.Label();
+      this.lbVersao = new System.Windows.Forms.Label();
+      this.lbVersaoaLabel = new System.Windows.Forms.Label();
       this.groupBox2.SuspendLayout();
       this.grpConfig.SuspendLayout();
       this.grpSmartClient.SuspendLayout();
@@ -94,7 +94,7 @@
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(9, 42);
+      this.label1.Location = new System.Drawing.Point(9, 21);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(56, 13);
       this.label1.TabIndex = 2;
@@ -104,43 +104,11 @@
       // 
       this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
       // 
-      // lbVersaoaLabel
-      // 
-      this.lbVersaoaLabel.AutoSize = true;
-      this.lbVersaoaLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-      this.lbVersaoaLabel.Location = new System.Drawing.Point(9, 9);
-      this.lbVersaoaLabel.Name = "lbVersaoaLabel";
-      this.lbVersaoaLabel.Size = new System.Drawing.Size(50, 13);
-      this.lbVersaoaLabel.TabIndex = 33;
-      this.lbVersaoaLabel.Text = "Versão:";
-      // 
-      // lbVersao
-      // 
-      this.lbVersao.AutoSize = true;
-      this.lbVersao.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-      this.lbVersao.Location = new System.Drawing.Point(65, 9);
-      this.lbVersao.Name = "lbVersao";
-      this.lbVersao.Size = new System.Drawing.Size(56, 13);
-      this.lbVersao.TabIndex = 34;
-      this.lbVersao.Text = "lbVersao";
-      // 
       // bgWorkerAplicar
       // 
       this.bgWorkerAplicar.WorkerSupportsCancellation = true;
       this.bgWorkerAplicar.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
       this.bgWorkerAplicar.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
-      // 
-      // lblMessage
-      // 
-      this.lblMessage.AutoSize = true;
-      this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.lblMessage.ForeColor = System.Drawing.SystemColors.Highlight;
-      this.lblMessage.Location = new System.Drawing.Point(179, 4);
-      this.lblMessage.Name = "lblMessage";
-      this.lblMessage.Size = new System.Drawing.Size(99, 20);
-      this.lblMessage.TabIndex = 34;
-      this.lblMessage.Text = "lblMessage";
-      this.lblMessage.Visible = false;
       // 
       // lstAmbientes
       // 
@@ -154,7 +122,7 @@
       this.lstAmbientes.HideSelection = false;
       this.lstAmbientes.Location = new System.Drawing.Point(3, 13);
       this.lstAmbientes.Name = "lstAmbientes";
-      this.lstAmbientes.Size = new System.Drawing.Size(250, 443);
+      this.lstAmbientes.Size = new System.Drawing.Size(250, 398);
       this.lstAmbientes.TabIndex = 36;
       this.lstAmbientes.TileSize = new System.Drawing.Size(220, 30);
       this.lstAmbientes.UseCompatibleStateImageBehavior = false;
@@ -166,9 +134,9 @@
       this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
       this.groupBox2.Controls.Add(this.lstAmbientes);
-      this.groupBox2.Location = new System.Drawing.Point(12, 60);
+      this.groupBox2.Location = new System.Drawing.Point(12, 39);
       this.groupBox2.Name = "groupBox2";
-      this.groupBox2.Size = new System.Drawing.Size(259, 462);
+      this.groupBox2.Size = new System.Drawing.Size(259, 424);
       this.groupBox2.TabIndex = 37;
       this.groupBox2.TabStop = false;
       // 
@@ -179,7 +147,7 @@
       this.btnRefreshAmbientes.FlatAppearance.BorderSize = 0;
       this.btnRefreshAmbientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnRefreshAmbientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.btnRefreshAmbientes.Location = new System.Drawing.Point(183, 35);
+      this.btnRefreshAmbientes.Location = new System.Drawing.Point(183, 14);
       this.btnRefreshAmbientes.Name = "btnRefreshAmbientes";
       this.btnRefreshAmbientes.Size = new System.Drawing.Size(56, 26);
       this.btnRefreshAmbientes.TabIndex = 37;
@@ -194,7 +162,7 @@
       this.btnAbrirRmNet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
       this.btnAbrirRmNet.FlatAppearance.BorderSize = 0;
       this.btnAbrirRmNet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnAbrirRmNet.Location = new System.Drawing.Point(245, 35);
+      this.btnAbrirRmNet.Location = new System.Drawing.Point(245, 14);
       this.btnAbrirRmNet.Name = "btnAbrirRmNet";
       this.btnAbrirRmNet.Size = new System.Drawing.Size(26, 26);
       this.btnAbrirRmNet.TabIndex = 6;
@@ -236,16 +204,16 @@
       this.grpConfig.Controls.Add(this.txbHttpPort);
       this.grpConfig.Controls.Add(this.txbApiPort);
       this.grpConfig.Controls.Add(this.label9);
-      this.grpConfig.Location = new System.Drawing.Point(277, 119);
+      this.grpConfig.Location = new System.Drawing.Point(277, 81);
       this.grpConfig.Name = "grpConfig";
-      this.grpConfig.Size = new System.Drawing.Size(727, 403);
+      this.grpConfig.Size = new System.Drawing.Size(721, 382);
       this.grpConfig.TabIndex = 38;
       this.grpConfig.TabStop = false;
       // 
       // txbFileServerPath
       // 
       this.txbFileServerPath.Enabled = false;
-      this.txbFileServerPath.Location = new System.Drawing.Point(11, 298);
+      this.txbFileServerPath.Location = new System.Drawing.Point(9, 298);
       this.txbFileServerPath.Name = "txbFileServerPath";
       this.txbFileServerPath.Size = new System.Drawing.Size(397, 20);
       this.txbFileServerPath.TabIndex = 19;
@@ -253,7 +221,7 @@
       // label6
       // 
       this.label6.AutoSize = true;
-      this.label6.Location = new System.Drawing.Point(8, 282);
+      this.label6.Location = new System.Drawing.Point(6, 282);
       this.label6.Name = "label6";
       this.label6.Size = new System.Drawing.Size(76, 13);
       this.label6.TabIndex = 38;
@@ -262,7 +230,7 @@
       // label5
       // 
       this.label5.AutoSize = true;
-      this.label5.Location = new System.Drawing.Point(8, 161);
+      this.label5.Location = new System.Drawing.Point(6, 161);
       this.label5.Name = "label5";
       this.label5.Size = new System.Drawing.Size(56, 13);
       this.label5.TabIndex = 37;
@@ -270,7 +238,7 @@
       // 
       // txbDefaultDb
       // 
-      this.txbDefaultDb.Location = new System.Drawing.Point(11, 177);
+      this.txbDefaultDb.Location = new System.Drawing.Point(9, 177);
       this.txbDefaultDb.Name = "txbDefaultDb";
       this.txbDefaultDb.Size = new System.Drawing.Size(156, 20);
       this.txbDefaultDb.TabIndex = 15;
@@ -279,7 +247,7 @@
       // 
       this.chbSmartClient.AutoSize = true;
       this.chbSmartClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.chbSmartClient.Location = new System.Drawing.Point(11, 65);
+      this.chbSmartClient.Location = new System.Drawing.Point(9, 65);
       this.chbSmartClient.Name = "chbSmartClient";
       this.chbSmartClient.Size = new System.Drawing.Size(117, 17);
       this.chbSmartClient.TabIndex = 7;
@@ -293,7 +261,7 @@
       this.grpSmartClient.Controls.Add(this.label3);
       this.grpSmartClient.Controls.Add(this.txbServidor);
       this.grpSmartClient.Enabled = false;
-      this.grpSmartClient.Location = new System.Drawing.Point(11, 79);
+      this.grpSmartClient.Location = new System.Drawing.Point(9, 79);
       this.grpSmartClient.Name = "grpSmartClient";
       this.grpSmartClient.Size = new System.Drawing.Size(403, 38);
       this.grpSmartClient.TabIndex = 35;
@@ -339,7 +307,7 @@
       // 
       // progressBarAplicar
       // 
-      this.progressBarAplicar.Location = new System.Drawing.Point(11, 348);
+      this.progressBarAplicar.Location = new System.Drawing.Point(9, 348);
       this.progressBarAplicar.Name = "progressBarAplicar";
       this.progressBarAplicar.Size = new System.Drawing.Size(205, 23);
       this.progressBarAplicar.TabIndex = 33;
@@ -349,7 +317,7 @@
       // 
       this.chbTraceFileRmExe.AutoSize = true;
       this.chbTraceFileRmExe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.chbTraceFileRmExe.Location = new System.Drawing.Point(136, 42);
+      this.chbTraceFileRmExe.Location = new System.Drawing.Point(134, 42);
       this.chbTraceFileRmExe.Name = "chbTraceFileRmExe";
       this.chbTraceFileRmExe.Size = new System.Drawing.Size(113, 17);
       this.chbTraceFileRmExe.TabIndex = 5;
@@ -361,7 +329,7 @@
       this.btnAplicar.BackColor = System.Drawing.SystemColors.ButtonHighlight;
       this.btnAplicar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
       this.btnAplicar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnAplicar.Location = new System.Drawing.Point(222, 348);
+      this.btnAplicar.Location = new System.Drawing.Point(220, 348);
       this.btnAplicar.Name = "btnAplicar";
       this.btnAplicar.Size = new System.Drawing.Size(90, 23);
       this.btnAplicar.TabIndex = 20;
@@ -371,7 +339,7 @@
       // label14
       // 
       this.label14.AutoSize = true;
-      this.label14.Location = new System.Drawing.Point(173, 161);
+      this.label14.Location = new System.Drawing.Point(171, 161);
       this.label14.Name = "label14";
       this.label14.Size = new System.Drawing.Size(111, 13);
       this.label14.TabIndex = 28;
@@ -381,7 +349,7 @@
       // 
       this.chbNCamadas.AutoSize = true;
       this.chbNCamadas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.chbNCamadas.Location = new System.Drawing.Point(11, 19);
+      this.chbNCamadas.Location = new System.Drawing.Point(9, 19);
       this.chbNCamadas.Name = "chbNCamadas";
       this.chbNCamadas.Size = new System.Drawing.Size(78, 17);
       this.chbNCamadas.TabIndex = 1;
@@ -391,7 +359,7 @@
       // 
       // txbLocalizationLanguage
       // 
-      this.txbLocalizationLanguage.Location = new System.Drawing.Point(176, 177);
+      this.txbLocalizationLanguage.Location = new System.Drawing.Point(174, 177);
       this.txbLocalizationLanguage.Name = "txbLocalizationLanguage";
       this.txbLocalizationLanguage.Size = new System.Drawing.Size(108, 20);
       this.txbLocalizationLanguage.TabIndex = 16;
@@ -403,15 +371,15 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       this.lstConfig.Enabled = false;
       this.lstConfig.FormattingEnabled = true;
-      this.lstConfig.Location = new System.Drawing.Point(433, 42);
+      this.lstConfig.Location = new System.Drawing.Point(431, 42);
       this.lstConfig.Name = "lstConfig";
-      this.lstConfig.Size = new System.Drawing.Size(288, 329);
+      this.lstConfig.Size = new System.Drawing.Size(282, 329);
       this.lstConfig.TabIndex = 7;
       // 
       // label13
       // 
       this.label13.AutoSize = true;
-      this.label13.Location = new System.Drawing.Point(229, 122);
+      this.label13.Location = new System.Drawing.Point(227, 122);
       this.label13.Name = "label13";
       this.label13.Size = new System.Drawing.Size(26, 13);
       this.label13.TabIndex = 26;
@@ -420,7 +388,7 @@
       // label2
       // 
       this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(431, 17);
+      this.label2.Location = new System.Drawing.Point(429, 17);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(84, 13);
       this.label2.TabIndex = 8;
@@ -428,7 +396,7 @@
       // 
       // txbPort
       // 
-      this.txbPort.Location = new System.Drawing.Point(232, 138);
+      this.txbPort.Location = new System.Drawing.Point(230, 138);
       this.txbPort.Name = "txbPort";
       this.txbPort.Size = new System.Drawing.Size(52, 20);
       this.txbPort.TabIndex = 12;
@@ -437,7 +405,7 @@
       // 
       this.chbEnableCompression.AutoSize = true;
       this.chbEnableCompression.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.chbEnableCompression.Location = new System.Drawing.Point(298, 17);
+      this.chbEnableCompression.Location = new System.Drawing.Point(296, 17);
       this.chbEnableCompression.Name = "chbEnableCompression";
       this.chbEnableCompression.Size = new System.Drawing.Size(116, 17);
       this.chbEnableCompression.TabIndex = 3;
@@ -447,7 +415,7 @@
       // label12
       // 
       this.label12.AutoSize = true;
-      this.label12.Location = new System.Drawing.Point(8, 200);
+      this.label12.Location = new System.Drawing.Point(6, 200);
       this.label12.Name = "label12";
       this.label12.Size = new System.Drawing.Size(43, 13);
       this.label12.TabIndex = 24;
@@ -457,7 +425,7 @@
       // 
       this.chbEnableDynamicLocalization.AutoSize = true;
       this.chbEnableDynamicLocalization.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.chbEnableDynamicLocalization.Location = new System.Drawing.Point(136, 17);
+      this.chbEnableDynamicLocalization.Location = new System.Drawing.Point(134, 17);
       this.chbEnableDynamicLocalization.Name = "chbEnableDynamicLocalization";
       this.chbEnableDynamicLocalization.Size = new System.Drawing.Size(153, 17);
       this.chbEnableDynamicLocalization.TabIndex = 2;
@@ -466,7 +434,7 @@
       // 
       // txbLibPath
       // 
-      this.txbLibPath.Location = new System.Drawing.Point(11, 216);
+      this.txbLibPath.Location = new System.Drawing.Point(9, 216);
       this.txbLibPath.Name = "txbLibPath";
       this.txbLibPath.Size = new System.Drawing.Size(397, 20);
       this.txbLibPath.TabIndex = 17;
@@ -475,7 +443,7 @@
       // 
       this.chbTraceFileHost.AutoSize = true;
       this.chbTraceFileHost.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.chbTraceFileHost.Location = new System.Drawing.Point(11, 42);
+      this.chbTraceFileHost.Location = new System.Drawing.Point(9, 42);
       this.chbTraceFileHost.Name = "chbTraceFileHost";
       this.chbTraceFileHost.Size = new System.Drawing.Size(98, 17);
       this.chbTraceFileHost.TabIndex = 4;
@@ -485,7 +453,7 @@
       // label11
       // 
       this.label11.AutoSize = true;
-      this.label11.Location = new System.Drawing.Point(8, 122);
+      this.label11.Location = new System.Drawing.Point(6, 122);
       this.label11.Name = "label11";
       this.label11.Size = new System.Drawing.Size(29, 13);
       this.label11.TabIndex = 22;
@@ -495,7 +463,7 @@
       // 
       this.chbTraceLS.AutoSize = true;
       this.chbTraceLS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.chbTraceLS.Location = new System.Drawing.Point(298, 42);
+      this.chbTraceLS.Location = new System.Drawing.Point(296, 42);
       this.chbTraceLS.Name = "chbTraceLS";
       this.chbTraceLS.Size = new System.Drawing.Size(64, 17);
       this.chbTraceLS.TabIndex = 6;
@@ -504,14 +472,14 @@
       // 
       // txbHost
       // 
-      this.txbHost.Location = new System.Drawing.Point(11, 138);
+      this.txbHost.Location = new System.Drawing.Point(9, 138);
       this.txbHost.Name = "txbHost";
       this.txbHost.Size = new System.Drawing.Size(210, 20);
       this.txbHost.TabIndex = 11;
       // 
       // txbActionsPath
       // 
-      this.txbActionsPath.Location = new System.Drawing.Point(11, 255);
+      this.txbActionsPath.Location = new System.Drawing.Point(9, 255);
       this.txbActionsPath.Name = "txbActionsPath";
       this.txbActionsPath.Size = new System.Drawing.Size(397, 20);
       this.txbActionsPath.TabIndex = 18;
@@ -519,7 +487,7 @@
       // label10
       // 
       this.label10.AutoSize = true;
-      this.label10.Location = new System.Drawing.Point(291, 122);
+      this.label10.Location = new System.Drawing.Point(289, 122);
       this.label10.Name = "label10";
       this.label10.Size = new System.Drawing.Size(46, 13);
       this.label10.TabIndex = 20;
@@ -528,7 +496,7 @@
       // label4
       // 
       this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(8, 239);
+      this.label4.Location = new System.Drawing.Point(6, 239);
       this.label4.Name = "label4";
       this.label4.Size = new System.Drawing.Size(64, 13);
       this.label4.TabIndex = 16;
@@ -536,14 +504,14 @@
       // 
       // txbHttpPort
       // 
-      this.txbHttpPort.Location = new System.Drawing.Point(294, 138);
+      this.txbHttpPort.Location = new System.Drawing.Point(292, 138);
       this.txbHttpPort.Name = "txbHttpPort";
       this.txbHttpPort.Size = new System.Drawing.Size(52, 20);
       this.txbHttpPort.TabIndex = 13;
       // 
       // txbApiPort
       // 
-      this.txbApiPort.Location = new System.Drawing.Point(356, 138);
+      this.txbApiPort.Location = new System.Drawing.Point(354, 138);
       this.txbApiPort.Name = "txbApiPort";
       this.txbApiPort.Size = new System.Drawing.Size(52, 20);
       this.txbApiPort.TabIndex = 14;
@@ -551,7 +519,7 @@
       // label9
       // 
       this.label9.AutoSize = true;
-      this.label9.Location = new System.Drawing.Point(353, 122);
+      this.label9.Location = new System.Drawing.Point(351, 122);
       this.label9.Name = "label9";
       this.label9.Size = new System.Drawing.Size(41, 13);
       this.label9.TabIndex = 18;
@@ -562,9 +530,9 @@
       this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.groupBox1.Controls.Add(this.pnlButtons);
-      this.groupBox1.Location = new System.Drawing.Point(277, 60);
+      this.groupBox1.Location = new System.Drawing.Point(277, 8);
       this.groupBox1.Name = "groupBox1";
-      this.groupBox1.Size = new System.Drawing.Size(727, 53);
+      this.groupBox1.Size = new System.Drawing.Size(721, 53);
       this.groupBox1.TabIndex = 39;
       this.groupBox1.TabStop = false;
       // 
@@ -663,23 +631,56 @@
       this.btnServiceManager.Text = "Service Manager";
       this.btnServiceManager.UseVisualStyleBackColor = false;
       // 
+      // lblMessage
+      // 
+      this.lblMessage.AutoSize = true;
+      this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lblMessage.ForeColor = System.Drawing.SystemColors.Highlight;
+      this.lblMessage.Location = new System.Drawing.Point(407, 61);
+      this.lblMessage.Name = "lblMessage";
+      this.lblMessage.Size = new System.Drawing.Size(99, 20);
+      this.lblMessage.TabIndex = 44;
+      this.lblMessage.Text = "lblMessage";
+      this.lblMessage.Visible = false;
+      // 
+      // lbVersao
+      // 
+      this.lbVersao.AutoSize = true;
+      this.lbVersao.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lbVersao.Location = new System.Drawing.Point(328, 66);
+      this.lbVersao.Name = "lbVersao";
+      this.lbVersao.Size = new System.Drawing.Size(48, 13);
+      this.lbVersao.TabIndex = 43;
+      this.lbVersao.Text = "lbVersao";
+      // 
+      // lbVersaoaLabel
+      // 
+      this.lbVersaoaLabel.AutoSize = true;
+      this.lbVersaoaLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+      this.lbVersaoaLabel.Location = new System.Drawing.Point(280, 66);
+      this.lbVersaoaLabel.Name = "lbVersaoaLabel";
+      this.lbVersaoaLabel.Size = new System.Drawing.Size(50, 13);
+      this.lbVersaoaLabel.TabIndex = 42;
+      this.lbVersaoaLabel.Text = "Versão:";
+      // 
       // FormPrincipal
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1035, 534);
+      this.ClientSize = new System.Drawing.Size(1010, 475);
+      this.Controls.Add(this.lblMessage);
+      this.Controls.Add(this.lbVersao);
+      this.Controls.Add(this.lbVersaoaLabel);
       this.Controls.Add(this.grpConfig);
       this.Controls.Add(this.groupBox1);
       this.Controls.Add(this.btnAbrirRmNet);
       this.Controls.Add(this.btnRefreshAmbientes);
       this.Controls.Add(this.groupBox2);
-      this.Controls.Add(this.lblMessage);
-      this.Controls.Add(this.lbVersao);
-      this.Controls.Add(this.lbVersaoaLabel);
       this.Controls.Add(this.label1);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-      this.MinimumSize = new System.Drawing.Size(1051, 573);
+      this.MinimumSize = new System.Drawing.Size(1026, 514);
       this.Name = "FormPrincipal";
+      this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
       this.Text = "RM Tools";
       this.Load += new System.EventHandler(this.FormPrincipal_Load);
       this.groupBox2.ResumeLayout(false);
@@ -697,10 +698,7 @@
     #endregion
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Timer timer1;
-    private System.Windows.Forms.Label lbVersaoaLabel;
-    private System.Windows.Forms.Label lbVersao;
     private System.ComponentModel.BackgroundWorker bgWorkerAplicar;
-    private System.Windows.Forms.Label lblMessage;
     private System.Windows.Forms.ListView lstAmbientes;
     private System.Windows.Forms.GroupBox groupBox2;
     private System.Windows.Forms.ToolTip toolTip1;
@@ -749,6 +747,9 @@
     private System.Windows.Forms.Button btnServiceManager;
     private System.Windows.Forms.TextBox txbFileServerPath;
     private System.Windows.Forms.Label label6;
+    private System.Windows.Forms.Label lblMessage;
+    private System.Windows.Forms.Label lbVersao;
+    private System.Windows.Forms.Label lbVersaoaLabel;
   }
 }
 

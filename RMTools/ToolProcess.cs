@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.ServiceProcess;
 using System.Linq;
+using System.Drawing;
 
 namespace RMTools
 {
@@ -324,7 +325,7 @@ namespace RMTools
       }
       return result;
     }
-
+    
     private static void CreateAppConfig()
     {
       //XmlDocument config = new XmlDocument();
@@ -332,7 +333,10 @@ namespace RMTools
       if (!File.Exists(caminho))
       {
         //System.IO.File.Create(caminho);
-        string[] str = { "<?xml version=\"1.0\" encoding=\"utf-8\" ?>", "<configuration>", "  <appSettings>", "    <add key=\"Path\" value=\"C:\\totvs\" />", "  </appSettings>", " <startup>", "    <supportedRuntime version=\"v4.0\" sku=\".NETFramework,Version=v4.7.2\" />", "  </startup>", "</configuration>" };
+        string[] str = { "<?xml version=\"1.0\" encoding=\"utf-8\" ?>",
+                      "<configuration>", "  <appSettings>",
+                      "    <add key=\"Path\" value=\"C:\\totvs\" />",
+                      "  </appSettings>", " <startup>", "    <supportedRuntime version=\"v4.0\" sku=\".NETFramework,Version=v4.7.2\" />", "  </startup>", "</configuration>" };
         File.WriteAllLines(caminho, str);
       }
     }
