@@ -196,19 +196,26 @@ namespace RMTools
       return false;
     }
 
+    /// <summary>
+    /// Inicializa todas as tags adicionando seus values.
+    /// Obs. Atentar para se a tag vai para o JobRunner ou não, se sim, altere o valor tag.JobRunner para true
+    /// </summary>
     private static void InitTags()
     {
       _actionsPath = new Tag("ActionsPath","");
       _actionsPath.Side = "Both";
+      _actionsPath.JobRunner = true;
 
       _apiPort = new Tag("ApiPort","");      
       _apiPort.Side = "Server";
 
       _enableCompression = new Tag("EnableCompression", "");
       _enableCompression.Side = "Both";
+      _enableCompression.JobRunner = true;
 
       _enableDynamicLocalization = new Tag("EnableDynamicLocalization", "");
       _enableDynamicLocalization.Side = "Both";
+      _enableDynamicLocalization.JobRunner = true;
 
       _host = new Tag("Host", "");
       _host.Side = "Client";
@@ -218,12 +225,15 @@ namespace RMTools
 
       _jobServer3Camadas = new Tag("JobServer3Camadas", "");
       _jobServer3Camadas.Side = "Both";
+      _jobServer3Camadas.JobRunner = true;
 
       _libPath = new Tag("LibPath", "");
       _libPath.Side = "Both";
+      _libPath.JobRunner = true;
 
       _localizationLaguage = new Tag("LocalizationLanguage", "");
       _localizationLaguage.Side = "Both";
+      _localizationLaguage.JobRunner = true;
 
       _port = new Tag("Port", "");
       _port.Side = "Both";
@@ -245,6 +255,7 @@ namespace RMTools
 
       _defaultDb = new Tag("DefaultDB", "");
       _defaultDb.Side = "Server";
+      _defaultDb.JobRunner = true;
 
       _updateServerEnabled = new Tag("UpdateServerEnabled", "");
       _updateServerEnabled.Side = "Server";
@@ -278,20 +289,19 @@ namespace RMTools
       _updateServerEnabled.Value = UpdateServerEnabled.ToString();
       _fileServerPath.Value = FileServerPath.ToString();
 
+      // Utilizando a ApdateAll para também atualizar o Config do JobRunner
       ConfigAction.UpdateAll(_actionsPath, Ambiente.Selected.pathRmnet);
-      ConfigAction.Update(_apiPort, pathHostServiceConfig);
-      ConfigAction.Update(_apiPort, pathHostAppConfig);
+      ConfigAction.UpdateAllSide(_apiPort, Ambiente.Selected.pathRmnet);
       ConfigAction.UpdateAll(_enableCompression, Ambiente.Selected.pathRmnet);
       ConfigAction.UpdateAll(_enableDynamicLocalization, Ambiente.Selected.pathRmnet);
-      ConfigAction.Update(_host, pathRMExeConfig);
-      ConfigAction.Update(_httpPort, pathHostServiceConfig);
-      ConfigAction.Update(_httpPort, pathHostAppConfig);
+      ConfigAction.UpdateAllSide(_host, Ambiente.Selected.pathRmnet);
+      ConfigAction.UpdateAllSide(_httpPort, Ambiente.Selected.pathRmnet);
       ConfigAction.UpdateAll(_jobServer3Camadas, Ambiente.Selected.pathRmnet);
       ConfigAction.UpdateAll(_libPath, Ambiente.Selected.pathRmnet);
       ConfigAction.UpdateAll(_localizationLaguage, Ambiente.Selected.pathRmnet);
       ConfigAction.UpdateAll(_port, Ambiente.Selected.pathRmnet);
-      ConfigAction.Update(_defaultDb, pathHostServiceConfig);
-      ConfigAction.Update(_defaultDb, pathHostAppConfig);
+      ConfigAction.UpdateAllSide(_defaultDb, Ambiente.Selected.pathRmnet);
+
 
       if (_jobServer3Camadas.Value.ToLower() == "true")
       {

@@ -197,11 +197,16 @@ namespace RMTools
       }
     }
 
+    /// <summary>
+    /// Atualiza os arquivos Config conforme o Side da TAG recebida
+    /// </summary>
+    /// <param name="tag"></param>
+    /// <param name="caminho"></param>
     public static void UpdateAllSide(Tag tag, string caminho)
     {
       try
       {
-        List<string> listConfig = ListConfigPath(caminho, tag.Side);
+        List<string> listConfig = ListConfigPath(caminho, tag);
         foreach (string caminhoConfig in listConfig)
         {
           XmlDocument config = new XmlDocument();
@@ -271,26 +276,39 @@ namespace RMTools
       return arquivos;
     }
 
-    public static List<string> ListConfigPath(string caminhoAmbiente, string side)
+    public static List<string> ListConfigPath(string caminhoAmbiente, Tag tag)
     {
       List<string> arquivos = new List<string>();
+      string side = tag.Side;
 
       switch (side)
       {
         case "Both":
-          foreach (var arquivo in Directory.GetFiles(caminhoAmbiente))
-          {
-            if (arquivo.Contains(".config") && !arquivo.Contains("JobRunner"))
-              arquivos.Add(arquivo.ToString());
-          }
+          if (tag.JobRunner)
+            arquivos = ListConfigPath(caminhoAmbiente);
+          else
+            foreach (var arquivo in Directory.GetFiles(caminhoAmbiente))
+            {
+              if (arquivo.Contains(".config") && !arquivo.Contains("JobRunner"))
+                arquivos.Add(arquivo.ToString());
+            }
           return arquivos;
 
         case "Server":
-          foreach (var arquivo in Directory.GetFiles(caminhoAmbiente))
+          if (tag.JobRunner)
           {
-            if (arquivo.Contains(".config") && arquivo.Contains("Host") && !arquivo.Contains("JobRunner"))
-              arquivos.Add(arquivo.ToString());
+            foreach (var arquivo in Directory.GetFiles(caminhoAmbiente))
+            {
+              if (arquivo.Contains(".config") && arquivo.Contains("Host"))
+                arquivos.Add(arquivo.ToString());
+            }
           }
+          else
+            foreach (var arquivo in Directory.GetFiles(caminhoAmbiente))
+            {
+              if (arquivo.Contains(".config") && arquivo.Contains("Host") && !arquivo.Contains("JobRunner"))
+                arquivos.Add(arquivo.ToString());
+            }
           return arquivos;
 
         case "Client":

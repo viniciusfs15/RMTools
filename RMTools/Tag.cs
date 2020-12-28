@@ -11,6 +11,8 @@ namespace RMTools
     public string Key;
     public string Value;
     public string Side; // Server / Client / Both
+    public bool JobRunner = false;
+
     public Tag(string key, string value)
     {
       this.Key = key;
