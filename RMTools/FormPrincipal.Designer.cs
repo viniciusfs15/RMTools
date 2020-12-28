@@ -244,6 +244,7 @@
       // 
       // txbFileServerPath
       // 
+      this.txbFileServerPath.Enabled = false;
       this.txbFileServerPath.Location = new System.Drawing.Point(11, 298);
       this.txbFileServerPath.Name = "txbFileServerPath";
       this.txbFileServerPath.Size = new System.Drawing.Size(397, 20);
@@ -386,6 +387,7 @@
       this.chbNCamadas.TabIndex = 1;
       this.chbNCamadas.Text = "N Camadas";
       this.chbNCamadas.UseVisualStyleBackColor = true;
+      this.chbNCamadas.CheckStateChanged += new System.EventHandler(this.chbNCamadas_CheckStateChanged);
       // 
       // txbLocalizationLanguage
       // 

@@ -63,6 +63,29 @@ namespace RMTools
     private static Tag _fileServerPath;
     #endregion
 
+    public static void Clear()
+    {
+      InitTags();
+      _actionsPath.Value = "";
+      _apiPort.Value = "";
+      _enableCompression.Value = "";
+      _enableDynamicLocalization.Value = "";
+      _host.Value = "";
+      _httpPort.Value = "";
+      _jobServer3Camadas.Value = "";
+      _libPath.Value = "";
+      _localizationLaguage.Value = "";
+      _port.Value = "";
+      _traceFileRMExe.Value = "";
+      _traceFileHost.Value = "";
+      _traceLs.Value = "";
+      _configPath.Value = "";
+      _updateServer.Value = "";
+      _updateServerEnabled.Value = "";
+      _defaultDb.Value = "";
+      _fileServerPath.Value = "";
+    }
+
     public static bool LoadAmbientes()
     {
       if (Ambiente.ListAmbientes.Count > 0)
@@ -377,5 +400,3 @@ namespace RMTools
     }
   }
 }
-
-

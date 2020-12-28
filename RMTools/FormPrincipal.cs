@@ -10,6 +10,7 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace RMTools
 {
@@ -212,12 +213,7 @@ namespace RMTools
           break;
       }
     }
-
-    private void btnCarregarConfig_Click(object sender, EventArgs e)
-    {
-      
-    }
-
+    
     private void UpdateConfig()
     {
       lstConfig.Items.Clear();
@@ -244,6 +240,7 @@ namespace RMTools
 
     private void UpdateTagsConfig()
     {
+      Ambiente.Clear();
       Ambiente.UpdateTags();
       if (Ambiente.ConfigPath != "0")
       {
@@ -369,6 +366,33 @@ namespace RMTools
 
     private void bgWorker_DoWork(object sender, DoWorkEventArgs e)
     {
+      Ambiente.Clear();
+      // Validação da tag FileServerPath antes da execução das alterações de config
+      if (chbNCamadas.Checked == true)
+      {
+        if (txbFileServerPath.Text == "" || txbFileServerPath.Text == null)
+        {
+          ToolProcess.Print("Ao utilizar o ambiente como N camada, é necessário preencher o campo FileServerPath com uma pasta publicada em seu ambiente.\nPor exemplo: \\\\" + txbHost.Text.ToUpper() +"\\PastaPublica","e");
+          bgWorkerAplicar.CancelAsync();
+          bgWorkerAplicar.Dispose();
+          return;
+        }
+        else
+        {
+          Regex rx = new Regex(@"^\\\\(\w*)(\\)(\S\w*)",
+          RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+          MatchCollection matches = rx.Matches(txbFileServerPath.Text);
+          if (matches.Count == 0)
+          {
+            ToolProcess.Print("O endereço preenchido no campo FileServerPath, não parece ser um caminho de rede válido.\nA tag FileServerPath deve conter o caminho de rede de um diretório compartilhado de seu ambiente.\nPor exemplo: \\\\" + txbHost.Text.ToUpper() + "\\PastaPublica", "e");
+            bgWorkerAplicar.CancelAsync();
+            bgWorkerAplicar.Dispose();
+            return;
+          }
+        }
+      }
+
       Ambiente.JobServer3Camadas = chbNCamadas.Checked;
       Ambiente.EnableDynamicLocalization = chbEnableDynamicLocalization.Checked;
       Ambiente.EnableCompression = chbEnableCompression.Checked;
@@ -403,6 +427,7 @@ namespace RMTools
         Ambiente.UpdateServer = "";
         Ambiente.UpdateServerEnabled = false;
       }
+      
       
       Ambiente.ApplyConfig();
 
@@ -439,7 +464,6 @@ namespace RMTools
         progressBarAplicar.Style = ProgressBarStyle.Blocks;
         progressBarAplicar.Value = 100;
         progressBarAplicar.Visible = false;
-        btnCarregarConfig_Click(sender, e);
       }
     }
 
@@ -488,6 +512,15 @@ namespace RMTools
     private void btnAbrirRmNet_Click(object sender, EventArgs e)
     {
       Process.Start("explorer.exe", Ambiente.Selected.pathRmnet);
+    }
+
+    private void chbNCamadas_CheckStateChanged(object sender, EventArgs e)
+    {
+      txbFileServerPath.Enabled = false;
+      if (chbNCamadas.Checked == true)
+      {
+        txbFileServerPath.Enabled = true;
+      }
     }
   }
 }
