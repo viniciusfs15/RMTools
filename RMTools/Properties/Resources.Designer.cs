@@ -61,6 +61,15 @@ namespace RMTools.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Não é permitida a execução deste aplicativo fora do domínio TOTVS!.
+        /// </summary>
+        internal static string AppForaDoDominio {
+            get {
+                return ResourceManager.GetString("AppForaDoDominio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Abrir o diretório do ambiente selecionado.
         /// </summary>
         internal static string btnAbrirRmNet {

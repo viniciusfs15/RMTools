@@ -11,6 +11,7 @@ using System.ServiceProcess;
 using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using RMTools.AliasDir;
 
 namespace RMTools
 {
@@ -61,7 +62,11 @@ namespace RMTools
       pnlButtons.Enabled = true;
       btnAbrirRmNet.Enabled = true;
       lblMessage.Visible = false;
+      grpAliasDat.Enabled = false;
+      grpInfoAlias.Enabled = false;
+      grpServicosAlias.Enabled = false;
       e.Item.BackColor = Color.Silver;
+      cbAlias.ResetText();
     }
 
     private void InitializeLstAmbientes()
@@ -121,10 +126,18 @@ namespace RMTools
     {
       ResetTagsConfig();
       UpdateConfig();
+      InitCbAlias();
     }
 
     private void FormPrincipal_Load(object sender, EventArgs e)
     {
+      //Checa se o app esta sendo executado no dominio BH01
+      if (!ToolProcess.CheckDomain())
+      {
+        ToolProcess.Print(Properties.Resources.AppForaDoDominio, "e");
+        Application.Exit();
+      }        
+
       bool validaAmbientes = Ambiente.LoadAmbientes();
       if (!validaAmbientes)
       {
@@ -140,8 +153,14 @@ namespace RMTools
       pnlButtons.Enabled = false;
       btnAbrirRmNet.Enabled = false;
       grpConfig.Enabled = false;
+      grpAliasDat.Enabled = false;
+      grpInfoAlias.Enabled = false;
+      grpServicosAlias.Enabled = false;
       timer1.Interval = 2000;
       timer1.Enabled = true;
+
+      lstAmbientes.Items[0].Focused = true;
+      lstAmbientes.Items[0].Selected = true;
     }
 
     private void LoadAmbiente()
@@ -219,6 +238,7 @@ namespace RMTools
       lstConfig.Items.Clear();
       lstConfig.Enabled = true;
       grpConfig.Enabled = true;
+      grpAliasDat.Enabled = true;
       UpdateTagsConfig();
       GetConfigs();
     }
@@ -272,6 +292,29 @@ namespace RMTools
       }
     }
 
+    private void InitCbAlias()
+    {
+      AliasDat.InitializeAliasDat();
+      foreach (string alias in AliasDat.ListAliasNames)
+      {
+        cbAlias.Items.Add(alias);
+      }
+    }
+
+    private void ClearAliasDat()
+    {
+      txbAlias.Text = "";
+      txbServerBD.Text = "";
+      chbSql.Checked = false;
+      chbOracle.Checked = false;
+      txbBase.Text = "";
+      chbJSEnabled.Checked = false;
+      chbJSLocalOnly.Checked = false;
+      chbProcessPool.Checked = false;
+      txbJSMaxTreads.Text = "";
+      txbJSPollingInterval.Text = "";
+    }
+
     private void ResetTagsConfig()
     {
       chbNCamadas.Checked = false;
@@ -288,6 +331,9 @@ namespace RMTools
       txbLocalizationLanguage.Text = "";
       txbLibPath.Text = "";
       txbServidor.Text = "";
+
+      // Alias
+      cbAlias.Items.Clear();
     }
 
     private void lstConfig_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -522,6 +568,45 @@ namespace RMTools
         txbFileServerPath.Enabled = true;
       }
     }
+
+    private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+      AliasDat alias = AliasDat.ListAlias.Find(x => x.Alias.Value == cbAlias.SelectedItem.ToString());
+      AliasDat.Selected = alias;
+
+      ClearAliasDat();
+      UpdateAliasDat();
+
+      grpInfoAlias.Enabled = true;
+      grpServicosAlias.Enabled = true;
+
+      //Habilitar os grupos InfoAlias e ServiçosAlias
+
+    }
+
+    private void UpdateAliasDat()
+    {
+      txbAlias.Text = AliasDat.Selected.Alias.Value;
+      txbServerBD.Text = AliasDat.Selected.DbServer.Value;
+      txbJSMaxTreads.Text = AliasDat.Selected.JobServerMaxThreads.Value;
+      txbJSPollingInterval.Text = AliasDat.Selected.JobServerPollingInterval.Value;
+      txbBase.Text = AliasDat.Selected.DbName.Value;
+
+      chbSql.Checked = AliasDat.Selected.DbType.Value.ToLower() == "sqlserver"  ? true : false;
+      chbOracle.Checked = AliasDat.Selected.DbType.Value.ToLower() == "oracle" ? true : false;
+      chbJSEnabled.Checked = Convert.ToBoolean(AliasDat.Selected.JobServerEnabled.Value);
+      chbJSLocalOnly.Checked = Convert.ToBoolean(AliasDat.Selected.JobServerLocalOnly.Value);
+      chbProcessPool.Checked = Convert.ToBoolean(AliasDat.Selected.JobServerProcessPoolEnabled.Value);
+      
+    }
+
+    private void btnTestar_Click(object sender, EventArgs e)
+    {
+      
+    }
+
+    
   }
 }
 

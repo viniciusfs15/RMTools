@@ -208,4 +208,7 @@
   <data name="MsgAmbienteAlterado" xml:space="preserve">
     <value>O ambiente selecionado foi alterado durante a execução do aplicativo, a lista de ambientes será atualizada.</value>
   </data>
+  <data name="AppForaDoDominio" xml:space="preserve">
+    <value>Não é permitida a execução deste aplicativo fora do domínio TOTVS!</value>
+  </data>
 </root>

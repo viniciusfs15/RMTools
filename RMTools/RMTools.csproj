@@ -74,6 +74,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AliasDir\AliasDat.cs" />
+    <Compile Include="AliasDir\AliasAction.cs" />
     <Compile Include="Ambiente.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="ConfigAction.cs" />

@@ -84,11 +84,37 @@
       this.lblMessage = new System.Windows.Forms.Label();
       this.lbVersao = new System.Windows.Forms.Label();
       this.lbVersaoaLabel = new System.Windows.Forms.Label();
+      this.grpAliasDat = new System.Windows.Forms.GroupBox();
+      this.cbAlias = new System.Windows.Forms.ComboBox();
+      this.grpServicosAlias = new System.Windows.Forms.GroupBox();
+      this.btnSalvar = new System.Windows.Forms.Button();
+      this.label7 = new System.Windows.Forms.Label();
+      this.txbJSPollingInterval = new System.Windows.Forms.TextBox();
+      this.label8 = new System.Windows.Forms.Label();
+      this.txbJSMaxTreads = new System.Windows.Forms.TextBox();
+      this.chbProcessPool = new System.Windows.Forms.CheckBox();
+      this.chbJSLocalOnly = new System.Windows.Forms.CheckBox();
+      this.chbJSEnabled = new System.Windows.Forms.CheckBox();
+      this.grpInfoAlias = new System.Windows.Forms.GroupBox();
+      this.btnTestar = new System.Windows.Forms.Button();
+      this.label15 = new System.Windows.Forms.Label();
+      this.groupBox7 = new System.Windows.Forms.GroupBox();
+      this.chbOracle = new System.Windows.Forms.CheckBox();
+      this.chbSql = new System.Windows.Forms.CheckBox();
+      this.txbAlias = new System.Windows.Forms.TextBox();
+      this.label16 = new System.Windows.Forms.Label();
+      this.label17 = new System.Windows.Forms.Label();
+      this.txbBase = new System.Windows.Forms.TextBox();
+      this.txbServerBD = new System.Windows.Forms.TextBox();
       this.groupBox2.SuspendLayout();
       this.grpConfig.SuspendLayout();
       this.grpSmartClient.SuspendLayout();
       this.groupBox1.SuspendLayout();
       this.pnlButtons.SuspendLayout();
+      this.grpAliasDat.SuspendLayout();
+      this.grpServicosAlias.SuspendLayout();
+      this.grpInfoAlias.SuspendLayout();
+      this.groupBox7.SuspendLayout();
       this.SuspendLayout();
       // 
       // label1
@@ -122,7 +148,7 @@
       this.lstAmbientes.HideSelection = false;
       this.lstAmbientes.Location = new System.Drawing.Point(3, 13);
       this.lstAmbientes.Name = "lstAmbientes";
-      this.lstAmbientes.Size = new System.Drawing.Size(250, 398);
+      this.lstAmbientes.Size = new System.Drawing.Size(250, 403);
       this.lstAmbientes.TabIndex = 36;
       this.lstAmbientes.TileSize = new System.Drawing.Size(220, 30);
       this.lstAmbientes.UseCompatibleStateImageBehavior = false;
@@ -136,7 +162,7 @@
       this.groupBox2.Controls.Add(this.lstAmbientes);
       this.groupBox2.Location = new System.Drawing.Point(12, 39);
       this.groupBox2.Name = "groupBox2";
-      this.groupBox2.Size = new System.Drawing.Size(259, 424);
+      this.groupBox2.Size = new System.Drawing.Size(259, 433);
       this.groupBox2.TabIndex = 37;
       this.groupBox2.TabStop = false;
       // 
@@ -206,9 +232,10 @@
       this.grpConfig.Controls.Add(this.label9);
       this.grpConfig.Location = new System.Drawing.Point(277, 81);
       this.grpConfig.Name = "grpConfig";
-      this.grpConfig.Size = new System.Drawing.Size(721, 382);
+      this.grpConfig.Size = new System.Drawing.Size(670, 391);
       this.grpConfig.TabIndex = 38;
       this.grpConfig.TabStop = false;
+      this.grpConfig.Text = "Config";
       // 
       // txbFileServerPath
       // 
@@ -373,7 +400,7 @@
       this.lstConfig.FormattingEnabled = true;
       this.lstConfig.Location = new System.Drawing.Point(431, 42);
       this.lstConfig.Name = "lstConfig";
-      this.lstConfig.Size = new System.Drawing.Size(282, 329);
+      this.lstConfig.Size = new System.Drawing.Size(231, 329);
       this.lstConfig.TabIndex = 7;
       // 
       // label13
@@ -532,7 +559,7 @@
       this.groupBox1.Controls.Add(this.pnlButtons);
       this.groupBox1.Location = new System.Drawing.Point(277, 8);
       this.groupBox1.Name = "groupBox1";
-      this.groupBox1.Size = new System.Drawing.Size(721, 53);
+      this.groupBox1.Size = new System.Drawing.Size(1051, 53);
       this.groupBox1.TabIndex = 39;
       this.groupBox1.TabStop = false;
       // 
@@ -663,11 +690,241 @@
       this.lbVersaoaLabel.TabIndex = 42;
       this.lbVersaoaLabel.Text = "Versão:";
       // 
+      // grpAliasDat
+      // 
+      this.grpAliasDat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.grpAliasDat.Controls.Add(this.cbAlias);
+      this.grpAliasDat.Controls.Add(this.grpServicosAlias);
+      this.grpAliasDat.Controls.Add(this.grpInfoAlias);
+      this.grpAliasDat.Enabled = false;
+      this.grpAliasDat.Location = new System.Drawing.Point(953, 81);
+      this.grpAliasDat.Name = "grpAliasDat";
+      this.grpAliasDat.Size = new System.Drawing.Size(375, 391);
+      this.grpAliasDat.TabIndex = 45;
+      this.grpAliasDat.TabStop = false;
+      this.grpAliasDat.Text = "Alias.dat";
+      // 
+      // cbAlias
+      // 
+      this.cbAlias.FormattingEnabled = true;
+      this.cbAlias.Location = new System.Drawing.Point(16, 18);
+      this.cbAlias.Name = "cbAlias";
+      this.cbAlias.Size = new System.Drawing.Size(147, 21);
+      this.cbAlias.TabIndex = 9;
+      this.cbAlias.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+      // 
+      // grpServicosAlias
+      // 
+      this.grpServicosAlias.Controls.Add(this.btnSalvar);
+      this.grpServicosAlias.Controls.Add(this.label7);
+      this.grpServicosAlias.Controls.Add(this.txbJSPollingInterval);
+      this.grpServicosAlias.Controls.Add(this.label8);
+      this.grpServicosAlias.Controls.Add(this.txbJSMaxTreads);
+      this.grpServicosAlias.Controls.Add(this.chbProcessPool);
+      this.grpServicosAlias.Controls.Add(this.chbJSLocalOnly);
+      this.grpServicosAlias.Controls.Add(this.chbJSEnabled);
+      this.grpServicosAlias.Location = new System.Drawing.Point(7, 188);
+      this.grpServicosAlias.Name = "grpServicosAlias";
+      this.grpServicosAlias.Size = new System.Drawing.Size(359, 157);
+      this.grpServicosAlias.TabIndex = 8;
+      this.grpServicosAlias.TabStop = false;
+      this.grpServicosAlias.Text = "Serviços";
+      // 
+      // btnSalvar
+      // 
+      this.btnSalvar.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.btnSalvar.Location = new System.Drawing.Point(260, 128);
+      this.btnSalvar.Name = "btnSalvar";
+      this.btnSalvar.Size = new System.Drawing.Size(75, 23);
+      this.btnSalvar.TabIndex = 12;
+      this.btnSalvar.Text = "Salvar";
+      this.btnSalvar.UseVisualStyleBackColor = true;
+      // 
+      // label7
+      // 
+      this.label7.AutoSize = true;
+      this.label7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.label7.Location = new System.Drawing.Point(172, 78);
+      this.label7.Name = "label7";
+      this.label7.Size = new System.Drawing.Size(174, 13);
+      this.label7.TabIndex = 9;
+      this.label7.Text = "Intervalo entre verificações (polling)";
+      // 
+      // txbJSPollingInterval
+      // 
+      this.txbJSPollingInterval.Location = new System.Drawing.Point(175, 94);
+      this.txbJSPollingInterval.Name = "txbJSPollingInterval";
+      this.txbJSPollingInterval.Size = new System.Drawing.Size(160, 20);
+      this.txbJSPollingInterval.TabIndex = 11;
+      // 
+      // label8
+      // 
+      this.label8.AutoSize = true;
+      this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.label8.Location = new System.Drawing.Point(6, 78);
+      this.label8.Name = "label8";
+      this.label8.Size = new System.Drawing.Size(120, 13);
+      this.label8.TabIndex = 7;
+      this.label8.Text = "Execuções Simultâneas";
+      // 
+      // txbJSMaxTreads
+      // 
+      this.txbJSMaxTreads.Location = new System.Drawing.Point(9, 94);
+      this.txbJSMaxTreads.Name = "txbJSMaxTreads";
+      this.txbJSMaxTreads.Size = new System.Drawing.Size(160, 20);
+      this.txbJSMaxTreads.TabIndex = 10;
+      // 
+      // chbProcessPool
+      // 
+      this.chbProcessPool.AutoSize = true;
+      this.chbProcessPool.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.chbProcessPool.Location = new System.Drawing.Point(9, 43);
+      this.chbProcessPool.Name = "chbProcessPool";
+      this.chbProcessPool.Size = new System.Drawing.Size(155, 17);
+      this.chbProcessPool.TabIndex = 9;
+      this.chbProcessPool.Text = "Habilitar Pool de Processos";
+      this.chbProcessPool.UseVisualStyleBackColor = true;
+      // 
+      // chbJSLocalOnly
+      // 
+      this.chbJSLocalOnly.AutoSize = true;
+      this.chbJSLocalOnly.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.chbJSLocalOnly.Location = new System.Drawing.Point(190, 20);
+      this.chbJSLocalOnly.Name = "chbJSLocalOnly";
+      this.chbJSLocalOnly.Size = new System.Drawing.Size(165, 17);
+      this.chbJSLocalOnly.TabIndex = 8;
+      this.chbJSLocalOnly.Text = "Executar apenas Jobs Locais";
+      this.chbJSLocalOnly.UseVisualStyleBackColor = true;
+      // 
+      // chbJSEnabled
+      // 
+      this.chbJSEnabled.AutoSize = true;
+      this.chbJSEnabled.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.chbJSEnabled.Location = new System.Drawing.Point(9, 20);
+      this.chbJSEnabled.Name = "chbJSEnabled";
+      this.chbJSEnabled.Size = new System.Drawing.Size(175, 17);
+      this.chbJSEnabled.TabIndex = 7;
+      this.chbJSEnabled.Text = "Habilitar Processamento de Job";
+      this.chbJSEnabled.UseVisualStyleBackColor = true;
+      // 
+      // grpInfoAlias
+      // 
+      this.grpInfoAlias.Controls.Add(this.btnTestar);
+      this.grpInfoAlias.Controls.Add(this.label15);
+      this.grpInfoAlias.Controls.Add(this.groupBox7);
+      this.grpInfoAlias.Controls.Add(this.txbAlias);
+      this.grpInfoAlias.Controls.Add(this.label16);
+      this.grpInfoAlias.Controls.Add(this.label17);
+      this.grpInfoAlias.Controls.Add(this.txbBase);
+      this.grpInfoAlias.Controls.Add(this.txbServerBD);
+      this.grpInfoAlias.Location = new System.Drawing.Point(7, 46);
+      this.grpInfoAlias.Name = "grpInfoAlias";
+      this.grpInfoAlias.Size = new System.Drawing.Size(359, 136);
+      this.grpInfoAlias.TabIndex = 7;
+      this.grpInfoAlias.TabStop = false;
+      this.grpInfoAlias.Text = "Informações do Alias";
+      // 
+      // btnTestar
+      // 
+      this.btnTestar.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.btnTestar.Location = new System.Drawing.Point(9, 107);
+      this.btnTestar.Name = "btnTestar";
+      this.btnTestar.Size = new System.Drawing.Size(75, 23);
+      this.btnTestar.TabIndex = 6;
+      this.btnTestar.Text = "Testar";
+      this.btnTestar.UseVisualStyleBackColor = true;
+      this.btnTestar.Click += new System.EventHandler(this.btnTestar_Click);
+      // 
+      // label15
+      // 
+      this.label15.AutoSize = true;
+      this.label15.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.label15.Location = new System.Drawing.Point(6, 22);
+      this.label15.Name = "label15";
+      this.label15.Size = new System.Drawing.Size(29, 13);
+      this.label15.TabIndex = 0;
+      this.label15.Text = "Alias";
+      // 
+      // groupBox7
+      // 
+      this.groupBox7.Controls.Add(this.chbOracle);
+      this.groupBox7.Controls.Add(this.chbSql);
+      this.groupBox7.Location = new System.Drawing.Point(175, 22);
+      this.groupBox7.Name = "groupBox7";
+      this.groupBox7.Size = new System.Drawing.Size(147, 37);
+      this.groupBox7.TabIndex = 6;
+      this.groupBox7.TabStop = false;
+      this.groupBox7.Text = "Tipo de Banco";
+      // 
+      // chbOracle
+      // 
+      this.chbOracle.AutoSize = true;
+      this.chbOracle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.chbOracle.Location = new System.Drawing.Point(86, 17);
+      this.chbOracle.Name = "chbOracle";
+      this.chbOracle.Size = new System.Drawing.Size(57, 17);
+      this.chbOracle.TabIndex = 3;
+      this.chbOracle.Text = "Oracle";
+      this.chbOracle.UseVisualStyleBackColor = true;
+      // 
+      // chbSql
+      // 
+      this.chbSql.AutoSize = true;
+      this.chbSql.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.chbSql.Location = new System.Drawing.Point(7, 17);
+      this.chbSql.Name = "chbSql";
+      this.chbSql.Size = new System.Drawing.Size(47, 17);
+      this.chbSql.TabIndex = 2;
+      this.chbSql.Text = "SQL";
+      this.chbSql.UseVisualStyleBackColor = true;
+      // 
+      // txbAlias
+      // 
+      this.txbAlias.Location = new System.Drawing.Point(9, 39);
+      this.txbAlias.Name = "txbAlias";
+      this.txbAlias.Size = new System.Drawing.Size(160, 20);
+      this.txbAlias.TabIndex = 1;
+      // 
+      // label16
+      // 
+      this.label16.AutoSize = true;
+      this.label16.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.label16.Location = new System.Drawing.Point(172, 62);
+      this.label16.Name = "label16";
+      this.label16.Size = new System.Drawing.Size(80, 13);
+      this.label16.TabIndex = 5;
+      this.label16.Text = "Base de Dados";
+      // 
+      // label17
+      // 
+      this.label17.AutoSize = true;
+      this.label17.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+      this.label17.Location = new System.Drawing.Point(6, 62);
+      this.label17.Name = "label17";
+      this.label17.Size = new System.Drawing.Size(46, 13);
+      this.label17.TabIndex = 2;
+      this.label17.Text = "Servidor";
+      // 
+      // txbBase
+      // 
+      this.txbBase.Location = new System.Drawing.Point(175, 79);
+      this.txbBase.Name = "txbBase";
+      this.txbBase.Size = new System.Drawing.Size(160, 20);
+      this.txbBase.TabIndex = 5;
+      // 
+      // txbServerBD
+      // 
+      this.txbServerBD.Location = new System.Drawing.Point(9, 79);
+      this.txbServerBD.Name = "txbServerBD";
+      this.txbServerBD.Size = new System.Drawing.Size(160, 20);
+      this.txbServerBD.TabIndex = 4;
+      // 
       // FormPrincipal
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1010, 475);
+      this.ClientSize = new System.Drawing.Size(1340, 475);
+      this.Controls.Add(this.grpAliasDat);
       this.Controls.Add(this.lblMessage);
       this.Controls.Add(this.lbVersao);
       this.Controls.Add(this.lbVersaoaLabel);
@@ -690,6 +947,13 @@
       this.grpSmartClient.PerformLayout();
       this.groupBox1.ResumeLayout(false);
       this.pnlButtons.ResumeLayout(false);
+      this.grpAliasDat.ResumeLayout(false);
+      this.grpServicosAlias.ResumeLayout(false);
+      this.grpServicosAlias.PerformLayout();
+      this.grpInfoAlias.ResumeLayout(false);
+      this.grpInfoAlias.PerformLayout();
+      this.groupBox7.ResumeLayout(false);
+      this.groupBox7.PerformLayout();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -750,6 +1014,28 @@
     private System.Windows.Forms.Label lblMessage;
     private System.Windows.Forms.Label lbVersao;
     private System.Windows.Forms.Label lbVersaoaLabel;
+    private System.Windows.Forms.GroupBox grpAliasDat;
+    private System.Windows.Forms.GroupBox grpServicosAlias;
+    private System.Windows.Forms.Button btnSalvar;
+    private System.Windows.Forms.Label label7;
+    private System.Windows.Forms.TextBox txbJSPollingInterval;
+    private System.Windows.Forms.Label label8;
+    private System.Windows.Forms.TextBox txbJSMaxTreads;
+    private System.Windows.Forms.CheckBox chbProcessPool;
+    private System.Windows.Forms.CheckBox chbJSLocalOnly;
+    private System.Windows.Forms.CheckBox chbJSEnabled;
+    private System.Windows.Forms.GroupBox grpInfoAlias;
+    private System.Windows.Forms.Button btnTestar;
+    private System.Windows.Forms.Label label15;
+    private System.Windows.Forms.GroupBox groupBox7;
+    private System.Windows.Forms.CheckBox chbOracle;
+    private System.Windows.Forms.CheckBox chbSql;
+    private System.Windows.Forms.TextBox txbAlias;
+    private System.Windows.Forms.Label label16;
+    private System.Windows.Forms.Label label17;
+    private System.Windows.Forms.TextBox txbBase;
+    private System.Windows.Forms.TextBox txbServerBD;
+    private System.Windows.Forms.ComboBox cbAlias;
   }
 }
 
